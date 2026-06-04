@@ -38,6 +38,7 @@ from gnomemusic.coresong import CoreSong
 from gnomemusic.grilowrappers.grltrackerplaylists import (
     GrlTrackerPlaylists, Playlist)
 from gnomemusic.trackerwrapper import TrackerWrapper
+from gnomemusic import utils
 from gnomemusic.utils import CoreObjectType
 if typing.TYPE_CHECKING:
     from gnomemusic.application import Application
@@ -383,12 +384,20 @@ class GrlTrackerWrapper(GObject.GObject):
                 self._artist_ids = artist_ids
                 return
 
-            if media.get_id() in self._artist_ids.keys():
-                artist = self._artist_ids[media.get_id()]
-            else:
-                artist = CoreArtist(self._application, media)
+            artist_name_full = utils.get_artist_name(media)
+            split_names = utils.split_artists(artist_name_full)
+            for artist_name in split_names:
+                artist_id = f"urn:artist:{GLib.uri_escape_string(artist_name, None, True)}"
+                if artist_id in self._artist_ids.keys():
+                    artist = self._artist_ids[artist_id]
+                else:
+                    split_media = Grl.Media.new()
+                    split_media.set_id(artist_id)
+                    split_media.set_artist(artist_name)
+                    split_media.set_source(media.get_source())
+                    artist = CoreArtist(self._application, split_media)
 
-            artist_ids[media.get_id()] = artist
+                artist_ids[artist_id] = artist
 
         self.props.source.query(
             query, metadata_keys, self._fast_options, check_artist_cb)
@@ -654,10 +663,23 @@ class GrlTrackerWrapper(GObject.GObject):
                 self._notificationmanager.pop_loading()
                 return
 
-            artist = CoreArtist(self._application, media)
-            self._artist_ids[media.get_id()] = artist
-            artists_added.append(artist)
-            if len(artists_added) == self._SPLICE_SIZE:
+            artist_name_full = utils.get_artist_name(media)
+            split_names = utils.split_artists(artist_name_full)
+            for artist_name in split_names:
+                artist_id = f"urn:artist:{GLib.uri_escape_string(artist_name, None, True)}"
+                if artist_id in self._artist_ids or any(a.media.get_id() == artist_id for a in artists_added):
+                    continue
+
+                split_media = Grl.Media.new()
+                split_media.set_id(artist_id)
+                split_media.set_artist(artist_name)
+                split_media.set_source(media.get_source())
+
+                artist = CoreArtist(self._application, split_media)
+                self._artist_ids[artist_id] = artist
+                artists_added.append(artist)
+
+            if len(artists_added) >= self._SPLICE_SIZE:
                 self._artists_model.splice(
                     self._artists_model.get_n_items(), 0, artists_added)
                 artists_added.clear()
@@ -710,7 +732,10 @@ class GrlTrackerWrapper(GObject.GObject):
         :param Gfm.FilterListModel model: The model to fill
         """
         self._notificationmanager.push_loading()
-        artist_id = media.get_id()
+        artist_name = media.get_artist() or ""
+        import re
+        artist_esc = re.escape(artist_name).replace('"', '\\"')
+        pattern = f"(^|[/,;])\\\\s*{artist_esc}\\\\s*($|[/,;])"
 
         query = """
         SELECT
@@ -725,12 +750,18 @@ class GrlTrackerWrapper(GObject.GObject):
                         nie:contentCreated(?song) AS ?publicationDate
                     WHERE {
                         ?album a nmm:MusicAlbum .
-                        OPTIONAL { ?album  nmm:albumArtist ?album_artist . }
+                        OPTIONAL {
+                            ?album  nmm:albumArtist ?album_artist .
+                            ?album_artist nmm:artistName ?album_artist_name .
+                        }
                         ?song a nmm:MusicPiece;
                               nmm:musicAlbum ?album;
                               nmm:artist ?artist .
-                        FILTER ( ?album_artist = <%(artist_id)s>
-                                 || ?artist = <%(artist_id)s> )
+                        OPTIONAL { ?artist nmm:artistName ?artist_name . }
+                        FILTER (
+                            (BOUND(?album_artist_name) && REGEX(?album_artist_name, "%(pattern)s", "i"))
+                            || (BOUND(?artist_name) && REGEX(?artist_name, "%(pattern)s", "i"))
+                        )
                         %(location_filter)s
                     }
                    GROUP BY ?album
@@ -741,7 +772,7 @@ class GrlTrackerWrapper(GObject.GObject):
         """.replace('\n', ' ').strip() % {
             "miner_fs_busname": self._tracker_wrapper.props.miner_fs_busname,
             "media_type": int(Grl.MediaType.CONTAINER),
-            "artist_id": artist_id,
+            "pattern": pattern,
             'location_filter': self._tracker_wrapper.location_filter()
         }
 

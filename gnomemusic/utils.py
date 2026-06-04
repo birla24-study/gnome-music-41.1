@@ -210,3 +210,18 @@ def wrap_list_store_sort_func(func):
         return func(a, b, *user_data)
 
     return wrap
+
+
+def split_artists(artist_string):
+    """Splits an artist name string containing multiple artists.
+
+    Artists can be separated by '/', ';', or ','.
+
+    :param str artist_string: The raw artist string
+    :return: A list of individual artist names
+    :rtype: list of str
+    """
+    if not artist_string:
+        return []
+    parts = re.split(r'\s*(?:/|,|;)\s*', artist_string)
+    return [p.strip() for p in parts if p.strip()]
