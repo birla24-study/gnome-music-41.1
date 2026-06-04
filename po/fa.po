@@ -1,0 +1,771 @@
+# Persian translation for gnome-music.
+# Copyright (C) 2013 gnome-music's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-music package.
+# royaniva <royaniva@outlook.com >, 2013.
+# Arash Mousavi <mousavi.arash@gmail.com>, 2013-2017.
+# Danial Behzadi <dani.behzi@ubuntu.com>, 2014, 2018-2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-music master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-music/issues\n"
+"POT-Creation-Date: 2021-08-27 21:42+0000\n"
+"PO-Revision-Date: 2021-09-01 16:18+0430\n"
+"Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
+"Language-Team: Persian <>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: data/org.gnome.Music.appdata.xml.in.in:6
+msgid "GNOME Music"
+msgstr "آهنگ‌های گنوم"
+
+#: data/org.gnome.Music.appdata.xml.in.in:7 data/org.gnome.Music.desktop.in.in:5
+msgid "Play and organize your music collection"
+msgstr "پخش و سازمان‌دهی مجموعه آهنگ‌هایتان"
+
+#: data/org.gnome.Music.appdata.xml.in.in:9
+msgid "An easy and pleasant way to play your music."
+msgstr "راهی آسان و دلپذیر برای پخش آهنگ‌هایتان."
+
+#: data/org.gnome.Music.appdata.xml.in.in:12
+msgid ""
+"Find tracks in your local collection, use automatically generated playlists or "
+"curate a fresh one."
+msgstr ""
+"یافتن قطعه‌ها در مجموعهٔ محلّیتان با استفاده از سیاهه‌های پخش ایجاد شده به صورت "
+"خودکار یا ساختن سیاهه‌ای تازه."
+
+#: data/org.gnome.Music.appdata.xml.in.in:140
+msgid "The GNOME Music developers"
+msgstr "توسعه‌دهندگان آهنگ‌های گنوم"
+
+#: data/org.gnome.Music.desktop.in.in:3 gnomemusic/application.py:60
+#: gnomemusic/window.py:71
+msgid "Music"
+msgstr "آهنگ‌ها"
+
+#: data/org.gnome.Music.desktop.in.in:4
+msgid "Music Player"
+msgstr "پخش‌کنندهٔ آهنگ"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Music.desktop.in.in:13
+msgid "Music;Player;"
+msgstr "Music;Player;پخش‌کننده‌;موزیک;آهنگ;"
+
+#: data/org.gnome.Music.gschema.xml:12
+msgid "Window size"
+msgstr "اندازهٔ پنجره"
+
+#: data/org.gnome.Music.gschema.xml:13
+msgid "Window size (width and height)."
+msgstr "اندازهٔ پنجره (پهنا و بلندا)"
+
+#: data/org.gnome.Music.gschema.xml:17
+msgid "Window position"
+msgstr "موقعیت پنجره"
+
+#: data/org.gnome.Music.gschema.xml:18
+msgid "Window position (x and y)."
+msgstr "موقعیت پنجره (x و y)."
+
+#: data/org.gnome.Music.gschema.xml:22
+msgid "Window maximized"
+msgstr "پنجره بیشینه شد"
+
+#: data/org.gnome.Music.gschema.xml:23
+msgid "Window maximized state."
+msgstr "حالت بیشینهٔ پنجره."
+
+#: data/org.gnome.Music.gschema.xml:27
+msgid "Playback repeat mode"
+msgstr "حالت تکرار پخش"
+
+#. Translators: Don't translate allowed values, just the description in the brackets
+#: data/org.gnome.Music.gschema.xml:29
+msgid ""
+"Value identifies whether to repeat or randomize playback through the collection. "
+"Allowed values are: “none” (repeat and shuffle are off), “song” (repeat current "
+"song), “all” (repeat playlist, no shuffle), “shuffle” (shuffle playlist, presumes "
+"repeat all)."
+msgstr ""
+"مقدار مشخص می‌کند که آیا پخش در میان مجموعه تکرار شود یا به صورت تصادفی باشد. "
+"مقادیر معتبر عبارتند از: «none» (تکرار و بر زدن خاموش)، «song» (آواز کنونی تکرار "
+"می‌شود)، «all» (سیاههٔ پخش بدون بر زدن تکرار می‌شود)، «shuffle» (بر زدن سیاههٔ پخش با "
+"حفظ تکرار همه)."
+
+#: data/org.gnome.Music.gschema.xml:33
+msgid "Enable ReplayGain"
+msgstr "فعال‌سازی ReplayGain"
+
+#: data/org.gnome.Music.gschema.xml:34
+msgid "Enables or disables ReplayGain for albums"
+msgstr "به یا از کار انداختن ReplayGain برای آلبوم‌ها"
+
+#: data/org.gnome.Music.gschema.xml:38
+msgid "Inhibit system suspend"
+msgstr "جلوگیری از تعلیق سامانه"
+
+#: data/org.gnome.Music.gschema.xml:39
+msgid "Enables or disables inhibiting system suspend while playing music"
+msgstr "به یا از کار انداختن جلوگیری از تعلیق سامانه هنگام پخش آهنگ"
+
+#: data/org.gnome.Music.gschema.xml:43
+msgid "Report music history to Last.fm"
+msgstr "گزارش تاریخچهٔ آهنگ‌ها به لست.اف‌ام"
+
+#: data/org.gnome.Music.gschema.xml:44
+msgid ""
+"Enables or disables sending scrobbles and the “currently playing” info to Last.fm."
+msgstr "به یا از کار انداختن فرستادن اطلاعات پخش به لست.اف‌‌ام."
+
+#: data/ui/AboutDialog.ui.in:9
+msgid "Copyright © 2018 GNOME Music Developers"
+msgstr "حق‌رونوشت © ۲۰۱۸ توسعه‌دهندگان آهنگ‌های گنوم"
+
+#: data/ui/AboutDialog.ui.in:10
+msgid "A music player and management application for GNOME."
+msgstr "یک برنامه مدیریت و پخش آهنگ‌ها برای گنوم."
+
+#: data/ui/AboutDialog.ui.in:12
+msgid "Visit GNOME Music website"
+msgstr "پایگاه وب آهنگ‌های گنوم را ببینید"
+
+#: data/ui/AboutDialog.ui.in:13
+msgid ""
+"GNOME Music is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
+"\n"
+"GNOME Music is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A "
+"PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"GNOME Music; if not, write to the Free Software Foundation, Inc., 51 Franklin "
+"Street, Fifth Floor, Boston, MA 02110-1301 USA.\n"
+"\n"
+"The GNOME Music authors hereby grant permission for non-GPL compatible GStreamer "
+"plugins to be used and distributed together with GStreamer and GNOME Music.  This "
+"permission is above and beyond the permissions granted by the GPL license by "
+"which GNOME Music is covered.  If you modify this code, you may extend this "
+"exception to your version of the code, but you are not obligated to do so.  If "
+"you do not wish to do so, delete this exception statement from your version."
+msgstr ""
+"آهنگ‌های گنوم یک نرم‌افزار آزاد است؛ می‌توانید آن را با شرایط نگارش ۲ یا (بنا به "
+"نظرتان) هر نگارش جدیدتری از پروانهٔ جامع همگانی گنو که بنیاد نرم‌افزارهای آزاد "
+"منتشر کرده است،‌ تغییر داده یا بازتوزیع کنید.\n"
+"\n"
+"آهنگ‌های گنوم با امید کارآیی توزیع شده است، ولی بدون هر گونه ضمانتی؛ حتا ضمانت "
+"ضمنی قابل فروش بودن یا مناسب بودن برای یک هدف مشخّص.  برای جزییات بیش‌تر، پروانهٔ "
+"جامع همگانی گنو را ببینید.\n"
+"\n"
+"همراه آهنگ‌های گنوم باید نگارشی از پروانهٔ جامع همگانی گنو را دریافت کرده باشد؛ در "
+"غیر این صورت با شرکت بنیاد نرم‌افزارهای آزاد به نشانی زیر مکاتبه کنید: Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA\n"
+"\n"
+"نگارندگان آهنگ‌های گنوم در این‌جا اجازه می‌دهند پلاگین‌های GStreamer ناسازگار با "
+"جی‌پی‌ال به همراه GStreamer در آهنگ‌های گنوم استفاده و توزیع شوند. این اجازه فراتر "
+"از اجازه‌هایی است که توسّط پروانهٔ جی‌پی‌ال که آهنگ‌های گنوم را پوشش می‌دهد داده شده "
+"است.  اگر این کد را دست‌کاری می‌کنید، ممکن است این استثنا را به نگارش خودتان از کد "
+"گسترش دهید، ولی تعهّدی برای این کار ندارید.  اگر نمی‌خواهید چنین کنید، این عبارت "
+"استثنا را از نگارشتان حذف کنید."
+
+#: data/ui/AlbumWidget.ui:104 data/ui/PlayerToolbar.ui:122
+#: data/ui/PlaylistControls.ui:121 data/ui/SongWidgetMenu.ui:19
+#: gnomemusic/widgets/playertoolbar.py:177
+msgid "Play"
+msgstr "پخش"
+
+#: data/ui/AlbumWidget.ui:163 data/ui/PlaylistControls.ui:6
+msgid "_Play"
+msgstr "_پخش"
+
+#: data/ui/AlbumWidget.ui:167
+msgid "Add to _Favorite Songs"
+msgstr "افزودن به آوازهای _محبوب"
+
+#: data/ui/AlbumWidget.ui:171
+msgid "_Add to Playlist…"
+msgstr "_افزودن به سیاههٔ پخش…"
+
+#: data/ui/AppMenu.ui:23 data/ui/LastfmDialog.ui:8
+msgid "Last.fm Account"
+msgstr "حساب لست.اف‌ام"
+
+#: data/ui/AppMenu.ui:38
+msgid "Report Music Listening"
+msgstr "گزارش گوش دادن به آهنگ"
+
+#: data/ui/AppMenu.ui:63
+msgid "_Keyboard Shortcuts"
+msgstr "میان‌برهای _صفحه‌کلید"
+
+#: data/ui/AppMenu.ui:74
+msgid "_Help"
+msgstr "_راهنما"
+
+#: data/ui/AppMenu.ui:85
+msgid "_About Music"
+msgstr "_دربارهٔ آهنگ‌ها"
+
+#: data/ui/EmptyView.ui:35
+msgid "Welcome to Music"
+msgstr "به آهنگ‌ها خوش آمدید"
+
+#: data/ui/HeaderBar.ui:16
+msgid "Menu"
+msgstr "فهرست"
+
+#: data/ui/HeaderBar.ui:39 data/ui/SearchHeaderBar.ui:16
+msgid "Select"
+msgstr "گزینش"
+
+#: data/ui/HeaderBar.ui:60 data/ui/PlaylistDialog.ui:211
+#: data/ui/SearchHeaderBar.ui:37
+msgid "_Cancel"
+msgstr "_لغو"
+
+#: data/ui/HeaderBar.ui:79 data/ui/SearchHeaderBar.ui:56
+msgid "Search"
+msgstr "جست‌وجو"
+
+#: data/ui/HeaderBar.ui:102
+msgid "Back"
+msgstr "برگشت"
+
+#: data/ui/help-overlay.ui:13
+msgctxt "shortcut window"
+msgid "General"
+msgstr "عمومی"
+
+#: data/ui/help-overlay.ui:17
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "بستن پنجره"
+
+#: data/ui/help-overlay.ui:24
+msgctxt "shortcut window"
+msgid "Search"
+msgstr "جست‌وجو"
+
+#: data/ui/help-overlay.ui:31
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "راهنما"
+
+#: data/ui/help-overlay.ui:38
+msgctxt "shortcut window"
+msgid "Shortcuts"
+msgstr "میان‌برها"
+
+#: data/ui/help-overlay.ui:47
+msgctxt "shortcut window"
+msgid "Playback"
+msgstr "پخش"
+
+#: data/ui/help-overlay.ui:51
+msgctxt "shortcut window"
+msgid "Play/Pause"
+msgstr "پخش/مکث"
+
+#: data/ui/help-overlay.ui:58
+msgctxt "shortcut window"
+msgid "Next song"
+msgstr "آهنگ بعد"
+
+#: data/ui/help-overlay.ui:65
+msgctxt "shortcut window"
+msgid "Previous song"
+msgstr "آهنگ پیشین"
+
+#: data/ui/help-overlay.ui:72
+msgctxt "shortcut window"
+msgid "Toggle repeat"
+msgstr "تغییر وضعیت تکرار"
+
+#: data/ui/help-overlay.ui:79
+msgctxt "shortcut window"
+msgid "Toggle shuffle"
+msgstr "تغییر وضعیت بر زدن"
+
+#: data/ui/help-overlay.ui:88
+msgctxt "shortcut window"
+msgid "Navigation"
+msgstr "ناوبری"
+
+#: data/ui/help-overlay.ui:92
+msgctxt "shortcut window"
+msgid "Go to Albums"
+msgstr "رفتن به آلبوم‌ها"
+
+#: data/ui/help-overlay.ui:99
+msgctxt "shortcut window"
+msgid "Go to Artists"
+msgstr "رفتن به هنرمندان"
+
+#: data/ui/help-overlay.ui:106
+msgctxt "shortcut window"
+msgid "Go to Songs"
+msgstr "رفتن به آهنگ‌ها"
+
+#: data/ui/help-overlay.ui:113
+msgctxt "shortcut window"
+msgid "Go to Playlists"
+msgstr "رفتن به سیاهه‌های پخش"
+
+#: data/ui/help-overlay.ui:120
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "بازگشت"
+
+#: data/ui/LastfmDialog.ui:24
+msgid ""
+"Last.fm is a music discovery service that gives you personalised recommendations "
+"based on the music you listen to."
+msgstr ""
+"لست.اف‌ام یک خدت کشف آهنگ است که به شما پیشنهادهایی شخصی‌شده بر اساس آهنگ‌هایی که "
+"گوش می‌کنید می‌دهد."
+
+#: data/ui/LastfmDialog.ui:35 gnomemusic/widgets/lastfmdialog.py:58
+msgid "Music Reporting Not Setup"
+msgstr "گزارش آهنگ برپا نشده"
+
+#: data/ui/LastfmDialog.ui:49 gnomemusic/widgets/lastfmdialog.py:61
+msgid "Login to your Last.fm account to report your music listening."
+msgstr "برای گزارش گوش کردنتان به آهنگ‌ها، وارد حساب لست.اف‌امتان شوید."
+
+#: data/ui/LastfmDialog.ui:60 gnomemusic/widgets/lastfmdialog.py:59
+msgid "Login"
+msgstr "ورود"
+
+#: data/ui/LoadingNotification.ui:16
+msgid "Loading"
+msgstr "در حال بار کردن"
+
+#: data/ui/PlayerToolbar.ui:105
+msgid "Previous"
+msgstr "پیشین"
+
+#: data/ui/PlayerToolbar.ui:139
+msgid "Next"
+msgstr "بعدی"
+
+#: data/ui/PlaylistControls.ui:10
+msgid "_Delete"
+msgstr "_حذف"
+
+#: data/ui/PlaylistControls.ui:14
+msgid "_Rename…"
+msgstr "_تغییر نام…"
+
+#: data/ui/PlaylistControls.ui:44
+msgid "Playlist Name"
+msgstr "نام سیاههٔ پخش"
+
+#: data/ui/PlaylistControls.ui:77
+msgid "_Done"
+msgstr "_انجام شد"
+
+#: data/ui/PlaylistDialog.ui:66
+msgid "Enter a name for your first playlist"
+msgstr "نامی برای نخستین سیاههٔ پخشتان وارد کنید"
+
+#: data/ui/PlaylistDialog.ui:88
+msgid "C_reate"
+msgstr "ا_یجاد"
+
+#: data/ui/PlaylistDialog.ui:156
+msgid "New Playlist…"
+msgstr "سیاههٔ پخش جدید…"
+
+#: data/ui/PlaylistDialog.ui:167
+msgid "Add"
+msgstr "افزودن"
+
+#: data/ui/PlaylistDialog.ui:208
+msgid "Add to Playlist"
+msgstr "افزودن به سیاههٔ پخش"
+
+#: data/ui/PlaylistDialog.ui:224
+msgid "_Add"
+msgstr "ا_فزودن"
+
+#: data/ui/PlaylistNotification.ui:22
+msgid "_Undo"
+msgstr "_برگردان"
+
+#: data/ui/SearchView.ui:47 gnomemusic/views/artistsview.py:46
+msgid "Artists"
+msgstr "هنرمندان"
+
+#: data/ui/SearchView.ui:57 data/ui/SearchView.ui:108
+msgid "View All"
+msgstr "نمایش همه"
+
+#: data/ui/SearchView.ui:98 gnomemusic/views/albumsview.py:50
+msgid "Albums"
+msgstr "آلبوم‌ها"
+
+#: data/ui/SearchView.ui:149 gnomemusic/views/songsview.py:47
+msgid "Songs"
+msgstr "آوازها"
+
+#: data/ui/SelectionBarMenuButton.ui:7
+msgid "Select All"
+msgstr "گزینش همه"
+
+#: data/ui/SelectionBarMenuButton.ui:11
+msgid "Select None"
+msgstr "گزینش هیچ‌کدام"
+
+#: data/ui/SelectionBarMenuButton.ui:30 gnomemusic/widgets/headerbar.py:71
+msgid "Click on items to select them"
+msgstr "برای گزینش موارد،‌رویشان کلیک کنید"
+
+#: data/ui/SelectionToolbar.ui:9
+msgid "_Add to Playlist"
+msgstr "ا_فزودن به سیاههٔ پخش"
+
+#: data/ui/SongWidgetMenu.ui:29
+msgid "Add to Playlist…"
+msgstr "افزودن به سیاههٔ پخش…"
+
+#: data/ui/SongWidgetMenu.ui:39
+msgid "Remove From Playlist"
+msgstr "برداشتن از سیاههٔ پخش"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:898
+msgid "Most Played"
+msgstr "بیش‌ترین پخش شده"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:952
+msgid "Never Played"
+msgstr "هرگز پخش نشده"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:1005
+msgid "Recently Played"
+msgstr "اخیراً پخش شده"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:1068
+msgid "Recently Added"
+msgstr "اخیراً اضافه شده"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:1131
+msgid "Favorite Songs"
+msgstr "آوازهای محبوب"
+
+#: gnomemusic/gstplayer.py:408
+msgid "Unable to play the file"
+msgstr "نمی‌توان پرونده را پخش کرد"
+
+#: gnomemusic/gstplayer.py:414
+msgid "_Find in {}"
+msgstr "_یافتن در {}"
+
+#. TRANSLATORS: separator for two codecs
+#: gnomemusic/gstplayer.py:424
+msgid " and "
+msgstr " و "
+
+#. TRANSLATORS: separator for a list of codecs
+#: gnomemusic/gstplayer.py:427
+msgid ", "
+msgstr "، "
+
+#: gnomemusic/gstplayer.py:429
+msgid "{} is required to play the file, but is not installed."
+msgid_plural "{} are required to play the file, but are not installed."
+msgstr[0] "برای پخش پرونده نیاز به {} است، ولی نصب نشده."
+
+#: gnomemusic/inhibitsuspend.py:63
+msgid "Playing music"
+msgstr "در حال پخش آهنگ"
+
+#. Translators: "shuffle" causes tracks to play in random order.
+#: gnomemusic/player.py:45
+msgid "Shuffle"
+msgstr "بر زدن"
+
+#: gnomemusic/player.py:46
+msgid "Repeat Song"
+msgstr "تکرار آواز"
+
+#: gnomemusic/player.py:47
+msgid "Repeat All"
+msgstr "تکرار همه"
+
+#: gnomemusic/player.py:48
+msgid "Shuffle/Repeat Off"
+msgstr "خاموشی بر زدن/تکرار"
+
+#: gnomemusic/utils.py:80
+msgid "Unknown album"
+msgstr "آلبوم ناشناس"
+
+#: gnomemusic/utils.py:101
+msgid "Unknown Artist"
+msgstr "هنرمند ناشناس"
+
+#: gnomemusic/views/emptyview.py:65
+msgid "Your XDG Music directory is not set."
+msgstr "شاخهٔ آهنگ XDGتان تنظیم نشده است."
+
+#: gnomemusic/views/emptyview.py:72
+msgid "Music Folder"
+msgstr "شاخهٔ موسیقی"
+
+#. TRANSLATORS: This is a label to display a link to open user's music
+#. folder. {} will be replaced with the translated text 'Music folder'
+#: gnomemusic/views/emptyview.py:76
+msgid "The contents of your {} will appear here."
+msgstr "محتویات {} شما در اینجا نمایان می‌شوند."
+
+#: gnomemusic/views/emptyview.py:124
+msgid "No Music Found"
+msgstr "هیچ آهنگی پیدا نشد"
+
+#: gnomemusic/views/emptyview.py:125
+msgid "Try a Different Search"
+msgstr "جست‌وجویی دیگر را بیازمایید"
+
+#: gnomemusic/views/emptyview.py:129
+msgid "GNOME Music could not connect to Tracker."
+msgstr "آهنگ‌های گنوم نتوانست به ردیاب وصل شود."
+
+#: gnomemusic/views/emptyview.py:131
+msgid "Your music files cannot be indexed without Tracker running."
+msgstr "بدون وجود ردیاب، پرونده‌های آهنگتان قادر به فهرست‌شدن نیستند."
+
+#: gnomemusic/views/emptyview.py:137
+msgid "Your system Tracker version seems outdated."
+msgstr "به نظر نگارش ردیاب سامانه‌تان قدیمی است."
+
+#: gnomemusic/views/emptyview.py:139
+msgid "Music needs Tracker version 3.0.0 or higher."
+msgstr "آهنگ‌ها به نگارش ۳٫۰٫۰ یا بالاتر ردیاب نیاز دارد."
+
+#: gnomemusic/views/playlistsview.py:45
+msgid "Playlists"
+msgstr "سیاهه‌های پخش"
+
+#: gnomemusic/views/searchview.py:420
+msgid "Artists Results"
+msgstr "نتیجه‌های هنرمندان"
+
+#: gnomemusic/views/searchview.py:435
+msgid "Albums Results"
+msgstr "نتیجه‌های آلبوم‌ها"
+
+#: gnomemusic/widgets/albumwidget.py:237
+msgid "{} minute"
+msgid_plural "{} minutes"
+msgstr[0] "{} دقیقه"
+
+#: gnomemusic/widgets/disclistboxwidget.py:75
+msgid "Disc {}"
+msgstr "دیسک {}"
+
+#: gnomemusic/widgets/headerbar.py:68
+msgid "Selected {} song"
+msgid_plural "Selected {} songs"
+msgstr[0] "{} آواز گزیده"
+
+#: gnomemusic/widgets/lastfmdialog.py:65
+msgid "Your music listening is reported to Last.fm."
+msgstr "گوش دادنتان به آهنگ‌ها به لست.اف‌ام گزارش شد."
+
+#: gnomemusic/widgets/lastfmdialog.py:67
+msgid "Your music listening is not reported to Last.fm."
+msgstr "گوش دادنتان به آهنگ‌ها به لست.اف‌ام گزارش نشد."
+
+#. TRANSLATORS: displays the username of the Last.fm account
+#: gnomemusic/widgets/lastfmdialog.py:71
+msgid "Logged in as {}"
+msgstr "وارد شده به عنوان {}"
+
+#: gnomemusic/widgets/lastfmdialog.py:72
+msgid "Configure"
+msgstr "پیکربندی"
+
+#: gnomemusic/widgets/notificationspopup.py:216
+msgid "Playlist {} removed"
+msgstr "سیاههٔ پخش {} برداشته شد"
+
+#: gnomemusic/widgets/notificationspopup.py:220
+msgid "{} removed from {}"
+msgstr "{} از {} برداشته شد"
+
+#: gnomemusic/widgets/playertoolbar.py:174
+msgid "Pause"
+msgstr "مکث"
+
+#: gnomemusic/widgets/playlistcontrols.py:132
+msgid "{} Song"
+msgid_plural "{} Songs"
+msgstr[0] "{} آهنگ"
+
+#~ msgid ""
+#~ "An easy way to play your music. Automatically discover music on your computer, "
+#~ "the local network and internet services."
+#~ msgstr ""
+#~ "راهی آسان برای پخش آهنگ‌هایتان. کشف خودکار آهنگ‌های روی رایانه، شبکهٔ محلّی و "
+#~ "خدمات اینترنتیتان."
+
+#~ msgid ""
+#~ "Find tracks in your local collection, get music from DLNA servers or try "
+#~ "something new with the Jamendo and Magnatune services."
+#~ msgstr ""
+#~ "یافتن قطعه‌ها روی گنجینهٔ محلّیتان، گرفتن آهنگ‌ها از کارسازهای DLNA یا آزمودن چیزی "
+#~ "جدید با خدمت‌های جمندو و ماگناتون."
+
+#~ msgid "Inital state has been displayed"
+#~ msgstr "وضعیت نخستین نمایش داده شده"
+
+#~ msgid "Set to true when initial state has been displayed"
+#~ msgstr "هنگام نمایش وضعیت ابتدایی، روی درست تنظیم شود"
+
+#~ msgid "Released"
+#~ msgstr "منتشر شده در"
+
+#~ msgid "Running Length"
+#~ msgstr "طول اجرا"
+
+#~ msgid "Composer"
+#~ msgstr "آهنگ‌ساز"
+
+#~ msgctxt "context menu item"
+#~ msgid "Play"
+#~ msgstr "پخش"
+
+#~ msgid "Hey DJ"
+#~ msgstr "هی دی‌جی"
+
+#~ msgid "Music is the new GNOME music playing application."
+#~ msgstr "آهنگ‌ها برنامه پخش آهنگ جدید گنوم است."
+
+#~ msgid "Search mode"
+#~ msgstr "حالت جست‌وجو"
+
+#~ msgid "If true, the search bar is shown."
+#~ msgstr "اگر درست باشد، نوار جست‌وجو نشان داده می‌شود."
+
+#~ msgid "Notifications mode"
+#~ msgstr "حالت اعلان"
+
+#~ msgid "Enables or disables playback notifications"
+#~ msgstr "فعال یا غیرفعال‌سازی اعلان‌های پخش"
+
+#~ msgid "the|a|an"
+#~ msgstr "the|a|an"
+
+#~ msgid "All"
+#~ msgstr "همه"
+
+#~ msgid "Artist"
+#~ msgstr "هنرمند"
+
+#~ msgid "Album"
+#~ msgstr "آلبوم"
+
+#~ msgid "Track Title"
+#~ msgstr "نام آهنگ"
+
+#~ msgid "Local"
+#~ msgstr "محلی"
+
+#~ msgid "Sources"
+#~ msgstr "منابع"
+
+#~ msgid "Match"
+#~ msgstr "هماهنگ"
+
+#~ msgid "Untitled"
+#~ msgstr "بدون عنوان"
+
+#~ msgid "Selected %d item"
+#~ msgid_plural "Selected %d items"
+#~ msgstr[0] "تعداد %d مورد انتخاب شد"
+
+#~ msgid "%d min"
+#~ msgstr "%d دقیقه"
+
+#~ msgid "Empty"
+#~ msgstr "خالی"
+
+#~ msgid "_Quit"
+#~ msgstr "_خروج"
+
+#~ msgid "Select Playlist"
+#~ msgstr "انتخاب فهرست‌پخش"
+
+#~ msgid "Max chars to display in track name on Artist view"
+#~ msgstr "بیشینه‌ی نویسه‌ها جهت نمایش نام قطعه در نمای هنرمند"
+
+#~ msgid ""
+#~ "This setting modifies the amount of chars for track title on Artist view "
+#~ "before its been ellipsized. Set this to -1 to disable"
+#~ msgstr ""
+#~ "این تنظیم تعداد نویسه‌های عنوان قطعه را در نمای هنرمند قبل از خلاصه شدن تعیین "
+#~ "می‌کند. برو روی -1 تنظیم کنید تا غیرفعال شود"
+
+#~ msgid "the a an"
+#~ msgstr "the a an"
+
+#~ msgid "All Artists"
+#~ msgstr "تمام هنرمندان"
+
+#~ msgid "Not playing"
+#~ msgstr "چیزی پخش نمی‌شود"
+
+#~ msgid "by %s, from %s"
+#~ msgstr "توسّط %s، از آلبوم %s"
+
+#~ msgid ""
+#~ "No Music found!\n"
+#~ " Put some files into the folder %s"
+#~ msgstr ""
+#~ "هیچ آهنگی پیدا نشد!\n"
+#~ " تعدادی پرونده در پوشه‌ی %s بگذارید"
+
+#~ msgid "_New Playlist"
+#~ msgstr "فهرست پخش _جدید"
+
+#~ msgid "Load More"
+#~ msgstr "بار کردن بیش‌تر"
+
+#~| msgid "_Now Playing"
+#~ msgid "Now _Playing"
+#~ msgstr "درحال پخش"
+
+#~ msgid "<span color='grey'>Released</span>"
+#~ msgstr "<رنگ طول='grey'>انتشار/>محدوده>"
+
+#~ msgid "<span color='grey'>Running Length</span>"
+#~ msgstr "<رنگ طول='grey'>در حال اجرا طول/>محدوده>"
+
+#~ msgid "----"
+#~ msgstr "----"
+
+#~ msgid "--:--"
+#~ msgstr "--:--"
+
+#~ msgid "If true, do randomized playback through the collection"
+#~ msgstr "اگر درست باشد، پخش تصادفی از طریق مجموعه انجام می شود"
+
+#~ msgid "00:00"
+#~ msgstr "00:00"
+
+#~ msgid "/"
+#~ msgstr "/"

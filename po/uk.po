@@ -1,0 +1,680 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Daniel Korostil <ted.korostiled@gmail.com>, 2013, 2014, 2015, 2016, 2017.
+# Eugene Strezhnev <strezhnev.ua@gmail.com>, 2019.
+# Danylo Korostil <ted.korostiled@gmail.com>, 2019.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-music/issues\n"
+"POT-Creation-Date: 2021-08-27 21:42+0000\n"
+"PO-Revision-Date: 2021-08-28 10:23+0300\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
+"X-Generator: Lokalize 20.12.0\n"
+"X-Project-Style: gnome\n"
+
+#: data/org.gnome.Music.appdata.xml.in.in:6
+msgid "GNOME Music"
+msgstr "Музика GNOME"
+
+#: data/org.gnome.Music.appdata.xml.in.in:7
+#: data/org.gnome.Music.desktop.in.in:5
+msgid "Play and organize your music collection"
+msgstr "Грати та впорядковувати вашу музичну збірку"
+
+#: data/org.gnome.Music.appdata.xml.in.in:9
+msgid "An easy and pleasant way to play your music."
+msgstr "Простий і приємний спосіб відтворення вашої музики."
+
+#: data/org.gnome.Music.appdata.xml.in.in:12
+msgid ""
+"Find tracks in your local collection, use automatically generated playlists "
+"or curate a fresh one."
+msgstr ""
+"Шукайте композиції у вашій локальній збірці, користуйтеся автоматично "
+"створеними списками відтворення або створюйте вручну нові списки відтворення."
+
+#: data/org.gnome.Music.appdata.xml.in.in:140
+msgid "The GNOME Music developers"
+msgstr "Розробники Музики GNOME"
+
+#: data/org.gnome.Music.desktop.in.in:3 gnomemusic/application.py:60
+#: gnomemusic/window.py:71
+msgid "Music"
+msgstr "Музика"
+
+#: data/org.gnome.Music.desktop.in.in:4
+msgid "Music Player"
+msgstr "Програвач музики"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Music.desktop.in.in:13
+msgid "Music;Player;"
+msgstr "Музика;Програвач;Плеєр;"
+
+#: data/org.gnome.Music.gschema.xml:12
+msgid "Window size"
+msgstr "Розмір вікна"
+
+#: data/org.gnome.Music.gschema.xml:13
+msgid "Window size (width and height)."
+msgstr "Розмір вікна (ширина і висота)."
+
+#: data/org.gnome.Music.gschema.xml:17
+msgid "Window position"
+msgstr "Позиція вікна"
+
+#: data/org.gnome.Music.gschema.xml:18
+msgid "Window position (x and y)."
+msgstr "Розташування вікна (x та y)."
+
+#: data/org.gnome.Music.gschema.xml:22
+msgid "Window maximized"
+msgstr "Вікно розгорнуто"
+
+#: data/org.gnome.Music.gschema.xml:23
+msgid "Window maximized state."
+msgstr "Стан розгорнутого вікна."
+
+#: data/org.gnome.Music.gschema.xml:27
+msgid "Playback repeat mode"
+msgstr "Режим повторного програвання"
+
+#. Translators: Don't translate allowed values, just the description in the brackets
+#: data/org.gnome.Music.gschema.xml:29
+msgid ""
+"Value identifies whether to repeat or randomize playback through the "
+"collection. Allowed values are: “none” (repeat and shuffle are off), "
+"“song” (repeat current song), “all” (repeat playlist, no shuffle), "
+"“shuffle” (shuffle playlist, presumes repeat all)."
+msgstr ""
+"Значення, яке визначає, чи програвати збірку повторно, чи навмання. "
+"Допустимі значення: «none» (без повторювання і перемішування), "
+"«song» (повторювати одну пісню), «all» (повторювати список композицій, без "
+"змішування), «shuffle» (перемішати композиції у списку, допускаються "
+"повторювання)."
+
+#: data/org.gnome.Music.gschema.xml:33
+msgid "Enable ReplayGain"
+msgstr "Увімкнути ReplayGain"
+
+#: data/org.gnome.Music.gschema.xml:34
+msgid "Enables or disables ReplayGain for albums"
+msgstr "Вмикає або вимикає ReplayGain для альбомів"
+
+#: data/org.gnome.Music.gschema.xml:38
+msgid "Inhibit system suspend"
+msgstr "Пригнічення зупинки системи"
+
+#: data/org.gnome.Music.gschema.xml:39
+msgid "Enables or disables inhibiting system suspend while playing music"
+msgstr ""
+"Вмикає або вимикає пригнічення зупинки системи під час програвання музики"
+
+#: data/org.gnome.Music.gschema.xml:43
+msgid "Report music history to Last.fm"
+msgstr "Надсилати журнал відтворення на Last.fm"
+
+#: data/org.gnome.Music.gschema.xml:44
+msgid ""
+"Enables or disables sending scrobbles and the “currently playing” info to "
+"Last.fm."
+msgstr ""
+"Вмикає або вимикає надсилання журналу відтворення та даних щодо поточного "
+"відтворення музики на Last.fm."
+
+#: data/ui/AboutDialog.ui.in:9
+msgid "Copyright © 2018 GNOME Music Developers"
+msgstr "© 2018 Розробники Музики GNOME"
+
+#: data/ui/AboutDialog.ui.in:10
+msgid "A music player and management application for GNOME."
+msgstr "Програма для програвання і впорядкування музики в GNOME."
+
+#: data/ui/AboutDialog.ui.in:12
+msgid "Visit GNOME Music website"
+msgstr "Відвідати сайт Музики GNOME"
+
+#: data/ui/AboutDialog.ui.in:13
+msgid ""
+"GNOME Music is free software; you can redistribute it and/or modify it under "
+"the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"\n"
+"GNOME Music is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"GNOME Music; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.\n"
+"\n"
+"The GNOME Music authors hereby grant permission for non-GPL compatible "
+"GStreamer plugins to be used and distributed together with GStreamer and "
+"GNOME Music.  This permission is above and beyond the permissions granted by "
+"the GPL license by which GNOME Music is covered.  If you modify this code, "
+"you may extend this exception to your version of the code, but you are not "
+"obligated to do so.  If you do not wish to do so, delete this exception "
+"statement from your version."
+msgstr ""
+"«Музика GNOME» є вільним програмним забезпеченням (ПЗ); ви можете "
+"розповсюджувати її та/чи модифікувати її згідно з умовами ЗАГАЛЬНОЇ "
+"ГРОМАДСЬКОЇ ЛІЦЕНЗІЇ (GPL) GNU як опубліковано Free Software Foundation; "
+"версії 2 цієї Ліцензії, або (на ваш розсуд) будь якої наступної версії.\n"
+"\n"
+"Музика GNOME розповсюджується з надією, що вона стане у пригоді, але БЕЗ "
+"ЖОДНИХ ГАРАНТІЙ; навіть не маючи на увазі гарантії ПРИДАТНОСТІ ДЛЯ ПРОДАЖУ "
+"або ПРИДАТНОСТІ ДО КОНКРЕТНОЇ МЕТИ. Див. ЗАГАЛЬНУ ГРОМАДСЬКУ ЛІЦЕНЗІЮ (GPL) "
+"GNU для отримання детальної інформації.\n"
+"\n"
+"Ви маєте отримати копію ЗАГАЛЬНОЇ ГРОМАДСЬКОЇ ЛІЦЕНЗІЇ (GPL) GNU з цим "
+"примірником Музика GNOME; якщо ні, напишіть в Free Software Foundation, "
+"Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.\n"
+"\n"
+"Розробники Музики GNOME дають дозвіл на використання та розповсюдження "
+"додатків GStreamer не сумісних з GPL, разом із GStreamer та Музикою GNOME. "
+"Цей дозвіл вище і за межами дозволів, наданих ліцензією GPL, якою "
+"охоплюється Музика GNOME.Якщо ви змінюєте цей код, ви можете розширити цей "
+"виняток на свою версію коду, але не зобов'язані цього робити. У цьому разі, "
+"вилучіть заяву про цей виняток зі своєї версії."
+
+#: data/ui/AlbumWidget.ui:104 data/ui/PlayerToolbar.ui:122
+#: data/ui/PlaylistControls.ui:121 data/ui/SongWidgetMenu.ui:19
+#: gnomemusic/widgets/playertoolbar.py:177
+msgid "Play"
+msgstr "Програти"
+
+#: data/ui/AlbumWidget.ui:163 data/ui/PlaylistControls.ui:6
+msgid "_Play"
+msgstr "Про_грати"
+
+#: data/ui/AlbumWidget.ui:167
+msgid "Add to _Favorite Songs"
+msgstr "Додати до _улюблених пісень"
+
+#: data/ui/AlbumWidget.ui:171
+msgid "_Add to Playlist…"
+msgstr "_Додати до списку композицій…"
+
+#: data/ui/AppMenu.ui:23 data/ui/LastfmDialog.ui:8
+msgid "Last.fm Account"
+msgstr "Обліковий запис Last.fm"
+
+#: data/ui/AppMenu.ui:38
+msgid "Report Music Listening"
+msgstr "Сповіщати щодо відтворення музики"
+
+#: data/ui/AppMenu.ui:63
+msgid "_Keyboard Shortcuts"
+msgstr "_Клавіатурні скорочення"
+
+#: data/ui/AppMenu.ui:74
+msgid "_Help"
+msgstr "_Довідка"
+
+#: data/ui/AppMenu.ui:85
+msgid "_About Music"
+msgstr "_Про «Музику»"
+
+#: data/ui/EmptyView.ui:35
+msgid "Welcome to Music"
+msgstr "Вітаємо у «Музиці»"
+
+#: data/ui/HeaderBar.ui:16
+msgid "Menu"
+msgstr "Меню"
+
+#: data/ui/HeaderBar.ui:39 data/ui/SearchHeaderBar.ui:16
+msgid "Select"
+msgstr "Вибрати"
+
+#: data/ui/HeaderBar.ui:60 data/ui/PlaylistDialog.ui:211
+#: data/ui/SearchHeaderBar.ui:37
+msgid "_Cancel"
+msgstr "_Скасувати"
+
+#: data/ui/HeaderBar.ui:79 data/ui/SearchHeaderBar.ui:56
+msgid "Search"
+msgstr "Пошук"
+
+#: data/ui/HeaderBar.ui:102
+msgid "Back"
+msgstr "Назад"
+
+#: data/ui/help-overlay.ui:13
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Загальне"
+
+#: data/ui/help-overlay.ui:17
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "Закрити вікно"
+
+#: data/ui/help-overlay.ui:24
+msgctxt "shortcut window"
+msgid "Search"
+msgstr "Пошук"
+
+#: data/ui/help-overlay.ui:31
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "Довідка"
+
+#: data/ui/help-overlay.ui:38
+msgctxt "shortcut window"
+msgid "Shortcuts"
+msgstr "Скорочення"
+
+#: data/ui/help-overlay.ui:47
+msgctxt "shortcut window"
+msgid "Playback"
+msgstr "Відтворення"
+
+#: data/ui/help-overlay.ui:51
+msgctxt "shortcut window"
+msgid "Play/Pause"
+msgstr "Програти/призупинити"
+
+#: data/ui/help-overlay.ui:58
+msgctxt "shortcut window"
+msgid "Next song"
+msgstr "Наступна пісня"
+
+#: data/ui/help-overlay.ui:65
+msgctxt "shortcut window"
+msgid "Previous song"
+msgstr "Попередня пісня"
+
+#: data/ui/help-overlay.ui:72
+msgctxt "shortcut window"
+msgid "Toggle repeat"
+msgstr "Перемкнути повторення"
+
+#: data/ui/help-overlay.ui:79
+msgctxt "shortcut window"
+msgid "Toggle shuffle"
+msgstr "Перемкнути довільний порядок"
+
+#: data/ui/help-overlay.ui:88
+msgctxt "shortcut window"
+msgid "Navigation"
+msgstr "Пересування"
+
+#: data/ui/help-overlay.ui:92
+msgctxt "shortcut window"
+msgid "Go to Albums"
+msgstr "Перейти до альбомів"
+
+#: data/ui/help-overlay.ui:99
+msgctxt "shortcut window"
+msgid "Go to Artists"
+msgstr "Перейти до виконавців"
+
+#: data/ui/help-overlay.ui:106
+msgctxt "shortcut window"
+msgid "Go to Songs"
+msgstr "Перейти до пісень"
+
+#: data/ui/help-overlay.ui:113
+msgctxt "shortcut window"
+msgid "Go to Playlists"
+msgstr "Перейти до списків композицій"
+
+#: data/ui/help-overlay.ui:120
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Повернутися"
+
+#: data/ui/LastfmDialog.ui:24
+msgid ""
+"Last.fm is a music discovery service that gives you personalised "
+"recommendations based on the music you listen to."
+msgstr ""
+"Last.fm — служба ознайомлення з музикою, яка надає вам персоналізовані "
+"рекомендації на основі даних щодо музики, яку ви слухаєте."
+
+#: data/ui/LastfmDialog.ui:35 gnomemusic/widgets/lastfmdialog.py:58
+msgid "Music Reporting Not Setup"
+msgstr "Надсилання журналів відтворення не налаштовано"
+
+#: data/ui/LastfmDialog.ui:49 gnomemusic/widgets/lastfmdialog.py:61
+msgid "Login to your Last.fm account to report your music listening."
+msgstr ""
+"Увійдіть до вашого облікового запису на Last.fm, щоб надіслати дані журналу "
+"відтворення."
+
+#: data/ui/LastfmDialog.ui:60 gnomemusic/widgets/lastfmdialog.py:59
+msgid "Login"
+msgstr "Увійти"
+
+#: data/ui/LoadingNotification.ui:16
+msgid "Loading"
+msgstr "Завантаження"
+
+#: data/ui/PlayerToolbar.ui:105
+msgid "Previous"
+msgstr "Попередня"
+
+#: data/ui/PlayerToolbar.ui:139
+msgid "Next"
+msgstr "Наступна"
+
+#: data/ui/PlaylistControls.ui:10
+msgid "_Delete"
+msgstr "В_илучити"
+
+#: data/ui/PlaylistControls.ui:14
+msgid "_Rename…"
+msgstr "_Перейменувати…"
+
+#: data/ui/PlaylistControls.ui:44
+msgid "Playlist Name"
+msgstr "Назва списку композицій"
+
+#: data/ui/PlaylistControls.ui:77
+msgid "_Done"
+msgstr "_Зроблено"
+
+#: data/ui/PlaylistDialog.ui:66
+msgid "Enter a name for your first playlist"
+msgstr "Введіть назву вашого першого списку композицій"
+
+#: data/ui/PlaylistDialog.ui:88
+msgid "C_reate"
+msgstr "С_творити"
+
+#: data/ui/PlaylistDialog.ui:156
+msgid "New Playlist…"
+msgstr "Створити список композицій…"
+
+#: data/ui/PlaylistDialog.ui:167
+msgid "Add"
+msgstr "Додати"
+
+#: data/ui/PlaylistDialog.ui:208
+msgid "Add to Playlist"
+msgstr "Додати до списку композицій"
+
+#: data/ui/PlaylistDialog.ui:224
+msgid "_Add"
+msgstr "_Додати"
+
+#: data/ui/PlaylistNotification.ui:22
+msgid "_Undo"
+msgstr "_Повернути"
+
+#: data/ui/SearchView.ui:47 gnomemusic/views/artistsview.py:46
+msgid "Artists"
+msgstr "Виконавці"
+
+#: data/ui/SearchView.ui:57 data/ui/SearchView.ui:108
+msgid "View All"
+msgstr "Переглянути все"
+
+#: data/ui/SearchView.ui:98 gnomemusic/views/albumsview.py:50
+msgid "Albums"
+msgstr "Альбоми"
+
+#: data/ui/SearchView.ui:149 gnomemusic/views/songsview.py:47
+msgid "Songs"
+msgstr "Пісні"
+
+#: data/ui/SelectionBarMenuButton.ui:7
+msgid "Select All"
+msgstr "Вибрати все"
+
+#: data/ui/SelectionBarMenuButton.ui:11
+msgid "Select None"
+msgstr "Не вибирати"
+
+#: data/ui/SelectionBarMenuButton.ui:30 gnomemusic/widgets/headerbar.py:71
+msgid "Click on items to select them"
+msgstr "Натисніть на об'єкти, щоб вибрати їх"
+
+#: data/ui/SelectionToolbar.ui:9
+msgid "_Add to Playlist"
+msgstr "_Додати до списку композицій"
+
+#: data/ui/SongWidgetMenu.ui:29
+msgid "Add to Playlist…"
+msgstr "Додати до списку композицій…"
+
+#: data/ui/SongWidgetMenu.ui:39
+msgid "Remove From Playlist"
+msgstr "Вилучити зі списку"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:898
+msgid "Most Played"
+msgstr "Часто слухали"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:952
+msgid "Never Played"
+msgstr "Ніколи не слухали"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:1005
+msgid "Recently Played"
+msgstr "Недавно слухали"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:1068
+msgid "Recently Added"
+msgstr "Недавно додано"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:1131
+msgid "Favorite Songs"
+msgstr "Улюблені пісні"
+
+#: gnomemusic/gstplayer.py:408
+msgid "Unable to play the file"
+msgstr "Неможливо відтворити файл"
+
+#: gnomemusic/gstplayer.py:414
+msgid "_Find in {}"
+msgstr "_Знайти в {}"
+
+#. TRANSLATORS: separator for two codecs
+#: gnomemusic/gstplayer.py:424
+msgid " and "
+msgstr " і "
+
+#. TRANSLATORS: separator for a list of codecs
+#: gnomemusic/gstplayer.py:427
+msgid ", "
+msgstr ", "
+
+#: gnomemusic/gstplayer.py:429
+msgid "{} is required to play the file, but is not installed."
+msgid_plural "{} are required to play the file, but are not installed."
+msgstr[0] "Потрібний {}, щоб програти файл, але його не встановлено."
+msgstr[1] "Потрібно {}, щоб програти файл, але їх не встановлено."
+msgstr[2] "Потрібно {}, щоб програти файл, але їх не встановлено."
+msgstr[3] "Потрібний {}, щоб програти файл, але його не встановлено."
+
+#: gnomemusic/inhibitsuspend.py:63
+msgid "Playing music"
+msgstr "Програється музика"
+
+#. Translators: "shuffle" causes tracks to play in random order.
+#: gnomemusic/player.py:45
+msgid "Shuffle"
+msgstr "У довільному порядку"
+
+#: gnomemusic/player.py:46
+msgid "Repeat Song"
+msgstr "Повторювати пісню"
+
+#: gnomemusic/player.py:47
+msgid "Repeat All"
+msgstr "Повторювати все"
+
+#: gnomemusic/player.py:48
+msgid "Shuffle/Repeat Off"
+msgstr "Довільний порядок/Повторення вимкнено"
+
+#: gnomemusic/utils.py:80
+msgid "Unknown album"
+msgstr "Невідомий альбом"
+
+#: gnomemusic/utils.py:101
+msgid "Unknown Artist"
+msgstr "Невідомий виконавець"
+
+#: gnomemusic/views/emptyview.py:65
+msgid "Your XDG Music directory is not set."
+msgstr "Не вказано музичної теки XDG."
+
+#: gnomemusic/views/emptyview.py:72
+msgid "Music Folder"
+msgstr "Тека з музикою"
+
+#. TRANSLATORS: This is a label to display a link to open user's music
+#. folder. {} will be replaced with the translated text 'Music folder'
+#: gnomemusic/views/emptyview.py:76
+msgid "The contents of your {} will appear here."
+msgstr "Тут з'явиться вміст {}."
+
+#: gnomemusic/views/emptyview.py:124
+msgid "No Music Found"
+msgstr "Музики не знайдено"
+
+#: gnomemusic/views/emptyview.py:125
+msgid "Try a Different Search"
+msgstr "Спробуйте пошукати інакше"
+
+#: gnomemusic/views/emptyview.py:129
+msgid "GNOME Music could not connect to Tracker."
+msgstr "Музика GNOME не може з'єднатись з Tracker."
+
+#: gnomemusic/views/emptyview.py:131
+msgid "Your music files cannot be indexed without Tracker running."
+msgstr "Музика не може бути індексована без запущеного Tracker."
+
+#: gnomemusic/views/emptyview.py:137
+msgid "Your system Tracker version seems outdated."
+msgstr "Схоже, версія програми Tracker застаріла."
+
+#: gnomemusic/views/emptyview.py:139
+msgid "Music needs Tracker version 3.0.0 or higher."
+msgstr "Для роботи «Музики» потрібна програма Tracker версії 3.0.0 або вище."
+
+#: gnomemusic/views/playlistsview.py:45
+msgid "Playlists"
+msgstr "Списки композицій"
+
+#: gnomemusic/views/searchview.py:420
+msgid "Artists Results"
+msgstr "Виконавці"
+
+#: gnomemusic/views/searchview.py:435
+msgid "Albums Results"
+msgstr "Альбоми"
+
+#: gnomemusic/widgets/albumwidget.py:237
+#| msgid "{}, {} minute"
+#| msgid_plural "{}, {} minutes"
+msgid "{} minute"
+msgid_plural "{} minutes"
+msgstr[0] "{} хвилина"
+msgstr[1] "{} хвилини"
+msgstr[2] "{} хвилин"
+msgstr[3] "{} хвилина"
+
+#: gnomemusic/widgets/disclistboxwidget.py:75
+msgid "Disc {}"
+msgstr "Диск {}"
+
+#: gnomemusic/widgets/headerbar.py:68
+msgid "Selected {} song"
+msgid_plural "Selected {} songs"
+msgstr[0] "Вибрано {} композицію"
+msgstr[1] "Вибрано {} композиції"
+msgstr[2] "Вибрано {} композицій"
+msgstr[3] "Вибрано {} композицію"
+
+#: gnomemusic/widgets/lastfmdialog.py:65
+msgid "Your music listening is reported to Last.fm."
+msgstr "Ваш журнал відтворення надіслано на Last.fm."
+
+#: gnomemusic/widgets/lastfmdialog.py:67
+msgid "Your music listening is not reported to Last.fm."
+msgstr "Ваш журнал відтворення не надіслано на Last.fm."
+
+#. TRANSLATORS: displays the username of the Last.fm account
+#: gnomemusic/widgets/lastfmdialog.py:71
+msgid "Logged in as {}"
+msgstr "Вхід до системи від імені {}"
+
+#: gnomemusic/widgets/lastfmdialog.py:72
+msgid "Configure"
+msgstr "Налаштувати"
+
+#: gnomemusic/widgets/notificationspopup.py:216
+msgid "Playlist {} removed"
+msgstr "Список композицій {} вилучено"
+
+#: gnomemusic/widgets/notificationspopup.py:220
+msgid "{} removed from {}"
+msgstr "{} вилучено з {}"
+
+#: gnomemusic/widgets/playertoolbar.py:174
+msgid "Pause"
+msgstr "Призупинити"
+
+#: gnomemusic/widgets/playlistcontrols.py:132
+msgid "{} Song"
+msgid_plural "{} Songs"
+msgstr[0] "{} пісня"
+msgstr[1] "{} пісні"
+msgstr[2] "{} пісень"
+msgstr[3] "{} пісня"
+
+#~ msgid "Inital state has been displayed"
+#~ msgstr "Початковий стан вже було показано"
+
+#~ msgid "Set to true when initial state has been displayed"
+#~ msgstr "Увімкнуто, якщо початковий стан вже було показано"
+
+#~ msgid "Hey DJ"
+#~ msgstr "Агов, ді-джею!"
+
+#~ msgid ""
+#~ "An easy way to play your music. Automatically discover music on your "
+#~ "computer, the local network and internet services."
+#~ msgstr ""
+#~ "Простий спосіб слухати музику. Автоматично виявляє музику на комп'ютері, "
+#~ "у локальній мережі та в інтернеті."
+
+#~ msgid ""
+#~ "Find tracks in your local collection, get music from DLNA servers or try "
+#~ "something new with the Jamendo and Magnatune services."
+#~ msgstr ""
+#~ "Знаходь композиції у локальній збірці, отримай музику з DLNA серверів або "
+#~ "спробуй щось нове з сервісами Jamendo та Magnatune."
+
+#~ msgid "Released"
+#~ msgstr "Випущено"
+
+#~ msgid "Running Length"
+#~ msgstr "Тривалість виконання"
+
+#~ msgid "Composer"
+#~ msgstr "Композитор"
+
+#~ msgctxt "context menu item"
+#~ msgid "Play"
+#~ msgstr "Відтворити"

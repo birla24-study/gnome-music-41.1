@@ -1,0 +1,750 @@
+# Turkish translation for gnome-music.
+# Copyright (C) 2013-2019 gnome-music's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-music package.
+#
+# Gökhan Gurbetoğlu <ggurbet@gmail.com>, 2014, 2015.
+# Necdet Yücel <necdetyucel@gmail.com>, 2014, 2015.
+# Muhammet Kara <muhammetk@gmail.com>, 2013, 2014, 2015.
+# Osman Karagöz <osmank3@gmail.com>, 2017.
+# Furkan Tokaç <developmentft@gmail.com>, 2017.
+# Doğa Deniz Arıcı <bluegreenbrain@gmail.com>, 2018.
+# Sabri Ünal <libreajans@gmail.com>, 2019-2020.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2013-2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-music master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-music/issues\n"
+"POT-Creation-Date: 2021-08-27 21:42+0000\n"
+"PO-Revision-Date: 2021-09-19 09:02+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"Language-Team: Turkish <gnome-turk@gnome.org>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0\n"
+"X-POOTLE-MTIME: 1433363480.000000\n"
+
+#: data/org.gnome.Music.appdata.xml.in.in:6
+msgid "GNOME Music"
+msgstr "GNOME Müzik"
+
+#: data/org.gnome.Music.appdata.xml.in.in:7 data/org.gnome.Music.desktop.in.in:5
+msgid "Play and organize your music collection"
+msgstr "Müzik derleminizi çalın ve yönetin"
+
+#: data/org.gnome.Music.appdata.xml.in.in:9
+msgid "An easy and pleasant way to play your music."
+msgstr "Müziğinizi dinlemenin kolay ve hoş yolu."
+
+#: data/org.gnome.Music.appdata.xml.in.in:12
+msgid ""
+"Find tracks in your local collection, use automatically generated playlists or "
+"curate a fresh one."
+msgstr ""
+"Yerel derleminizdeki parçaları bulun,  kendiliğinden oluşturulan çalma listelerini "
+"kullanın veya yenisini yaratın."
+
+#: data/org.gnome.Music.appdata.xml.in.in:140
+msgid "The GNOME Music developers"
+msgstr "GNOME Müzik Geliştiricileri"
+
+#: data/org.gnome.Music.desktop.in.in:3 gnomemusic/application.py:60
+#: gnomemusic/window.py:71
+msgid "Music"
+msgstr "Müzik"
+
+#: data/org.gnome.Music.desktop.in.in:4
+msgid "Music Player"
+msgstr "Müzik Çalar"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Music.desktop.in.in:13
+msgid "Music;Player;"
+msgstr "Müzik;Çalar;Çalıcı;"
+
+#: data/org.gnome.Music.gschema.xml:12
+msgid "Window size"
+msgstr "Pencere boyutu"
+
+#: data/org.gnome.Music.gschema.xml:13
+msgid "Window size (width and height)."
+msgstr "Pencere boyutu (genişlik ve yükseklik)."
+
+#: data/org.gnome.Music.gschema.xml:17
+msgid "Window position"
+msgstr "Pencere konumu"
+
+#: data/org.gnome.Music.gschema.xml:18
+msgid "Window position (x and y)."
+msgstr "Pencere konumu (x ve y)."
+
+#: data/org.gnome.Music.gschema.xml:22
+msgid "Window maximized"
+msgstr "Pencere büyültüldüğünde"
+
+#: data/org.gnome.Music.gschema.xml:23
+msgid "Window maximized state."
+msgstr "Pencerenin büyütülmüş durumu."
+
+#: data/org.gnome.Music.gschema.xml:27
+msgid "Playback repeat mode"
+msgstr "Çalma yineleme kipi"
+
+#. Translators: Don't translate allowed values, just the description in the brackets
+#: data/org.gnome.Music.gschema.xml:29
+msgid ""
+"Value identifies whether to repeat or randomize playback through the collection. "
+"Allowed values are: “none” (repeat and shuffle are off), “song” (repeat current "
+"song), “all” (repeat playlist, no shuffle), “shuffle” (shuffle playlist, presumes "
+"repeat all)."
+msgstr ""
+"Bu değer, derlemdeki parçaların yinelemeli mi yoksa karışık mı çalınacağını "
+"belirtir. İzin verilen değerler şunlardır: “none” (yineleme ve karıştırma kapalı), "
+"“song” (geçerli şarkıyı yinele), “all” (çalma listesini yinele, karıştırma), "
+"“shuffle” (çalma listesini karıştır, tümü yinelenebilir)."
+
+#: data/org.gnome.Music.gschema.xml:33
+msgid "Enable ReplayGain"
+msgstr "ReplayGain’i etkinleştir"
+
+#: data/org.gnome.Music.gschema.xml:34
+msgid "Enables or disables ReplayGain for albums"
+msgstr "Albümler için ReplayGain’i etkinleştirir ya da devre dışı bırakır"
+
+#: data/org.gnome.Music.gschema.xml:38
+msgid "Inhibit system suspend"
+msgstr "Sistemin askıya alınmasını önle"
+
+#: data/org.gnome.Music.gschema.xml:39
+msgid "Enables or disables inhibiting system suspend while playing music"
+msgstr ""
+"Müzik çalarken sistemin askıya alınmasını önlemeyi etkinleştir veya devre dışı bırak"
+
+#: data/org.gnome.Music.gschema.xml:43
+msgid "Report music history to Last.fm"
+msgstr "Müzik geçmişini Last.fm’e bildir"
+
+#: data/org.gnome.Music.gschema.xml:44
+msgid ""
+"Enables or disables sending scrobbles and the “currently playing” info to Last.fm."
+msgstr ""
+"Last.fm’e skroplamaları ve “şu anda çalan” bilgilerini göndermeyi etkinleştirir "
+"veya devre dışı bırakır."
+
+#: data/ui/AboutDialog.ui.in:9
+msgid "Copyright © 2018 GNOME Music Developers"
+msgstr "Copyright © 2018 GNOME Müzik Geliştiricileri"
+
+#: data/ui/AboutDialog.ui.in:10
+msgid "A music player and management application for GNOME."
+msgstr "GNOME için müzik çalar ve yönetim uygulaması."
+
+#: data/ui/AboutDialog.ui.in:12
+msgid "Visit GNOME Music website"
+msgstr "GNOME Müzik web sitesini ziyaret et"
+
+#: data/ui/AboutDialog.ui.in:13
+msgid ""
+"GNOME Music is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
+"\n"
+"GNOME Music is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A "
+"PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with GNOME "
+"Music; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
+"Fifth Floor, Boston, MA 02110-1301 USA.\n"
+"\n"
+"The GNOME Music authors hereby grant permission for non-GPL compatible GStreamer "
+"plugins to be used and distributed together with GStreamer and GNOME Music.  This "
+"permission is above and beyond the permissions granted by the GPL license by which "
+"GNOME Music is covered.  If you modify this code, you may extend this exception to "
+"your version of the code, but you are not obligated to do so.  If you do not wish "
+"to do so, delete this exception statement from your version."
+msgstr ""
+"GNOME Müzik, özgür yazılımdır; Özgür Yazılım Vakfı tarafından yayımlanan GNU Genel "
+"Kamu Lisansının 2. sürümü ya da (isteğe bağlı olarak) sonraki sürümleri koşulları "
+"altında yeniden dağıtabilir ve/veya değiştirebilirsiniz.\n"
+"\n"
+"GNOME Müzik kullanışlı olması maksadıyla dağıtılmaktadır, ancak HİÇBİR GARANTİSİ "
+"YOKTUR; aynı zamanda BİR AMACA UYGUNLUĞU ya da SATILABİLİRLİĞİ garanti etmez.  Daha "
+"çok ayrıntı için GNU Genel Kamu Lisansına bakınız.\n"
+"\n"
+"GNU Genel Kamu Lisansı’nın bir kopyasını GNOME Müzik ile almış olmalısınız; eğer "
+"almadıysanız Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, "
+"Boston, MA 02110-1301 USA adresine yazın.\n"
+"\n"
+"GNOME Müzik yazarları GPL uyumlu olmayan GStreamer eklentilerinin GStreamer ve "
+"GNOME Müzik ile birlikte kullanılmasına ve dağıtılmasına izin vermektedirler.  Bu "
+"izin GNOME Müzik’in lisansı olan GPL lisansının üzerinde ve onu kapsayıcı olarak "
+"verilmektedir.  Eğer bu kodu değiştirirseniz zorunlu olmamakla birlikte bu "
+"genişletmeyi kendi kodunuza uygulayabilirsiniz.  Bunu yapmak istemezseniz kendi "
+"sürümünüzden bu istisna ifadesini kaldırabilirsiniz."
+
+#: data/ui/AlbumWidget.ui:104 data/ui/PlayerToolbar.ui:122
+#: data/ui/PlaylistControls.ui:121 data/ui/SongWidgetMenu.ui:19
+#: gnomemusic/widgets/playertoolbar.py:177
+msgid "Play"
+msgstr "Çal"
+
+#: data/ui/AlbumWidget.ui:163 data/ui/PlaylistControls.ui:6
+msgid "_Play"
+msgstr "_Çal"
+
+#: data/ui/AlbumWidget.ui:167
+msgid "Add to _Favorite Songs"
+msgstr "_Gözde Şarkılara Ekle"
+
+#: data/ui/AlbumWidget.ui:171
+msgid "_Add to Playlist…"
+msgstr "Çalma Listesine _Ekle…"
+
+#: data/ui/AppMenu.ui:23 data/ui/LastfmDialog.ui:8
+msgid "Last.fm Account"
+msgstr "Last.fm Hesabı"
+
+#: data/ui/AppMenu.ui:38
+msgid "Report Music Listening"
+msgstr "Müzik Dinlemeyi Bildir"
+
+#: data/ui/AppMenu.ui:63
+msgid "_Keyboard Shortcuts"
+msgstr "_Klavye Kısayolları"
+
+#: data/ui/AppMenu.ui:74
+msgid "_Help"
+msgstr "_Yardım"
+
+#: data/ui/AppMenu.ui:85
+msgid "_About Music"
+msgstr "Müzik _Hakkında"
+
+#: data/ui/EmptyView.ui:35
+msgid "Welcome to Music"
+msgstr "Müzikʼe Hoş Geldiniz"
+
+#: data/ui/HeaderBar.ui:16
+msgid "Menu"
+msgstr "Menü"
+
+#: data/ui/HeaderBar.ui:39 data/ui/SearchHeaderBar.ui:16
+msgid "Select"
+msgstr "Seç"
+
+#: data/ui/HeaderBar.ui:60 data/ui/PlaylistDialog.ui:211 data/ui/SearchHeaderBar.ui:37
+msgid "_Cancel"
+msgstr "_Vazgeç"
+
+#: data/ui/HeaderBar.ui:79 data/ui/SearchHeaderBar.ui:56
+msgid "Search"
+msgstr "Ara"
+
+#: data/ui/HeaderBar.ui:102
+msgid "Back"
+msgstr "Geri"
+
+#: data/ui/help-overlay.ui:13
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Genel"
+
+#: data/ui/help-overlay.ui:17
+msgctxt "shortcut window"
+msgid "Close window"
+msgstr "Pencereyi kapat"
+
+#: data/ui/help-overlay.ui:24
+msgctxt "shortcut window"
+msgid "Search"
+msgstr "Ara"
+
+#: data/ui/help-overlay.ui:31
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "Yardım"
+
+#: data/ui/help-overlay.ui:38
+msgctxt "shortcut window"
+msgid "Shortcuts"
+msgstr "Kısayollar"
+
+#: data/ui/help-overlay.ui:47
+msgctxt "shortcut window"
+msgid "Playback"
+msgstr "Kayıttan yürüt"
+
+#: data/ui/help-overlay.ui:51
+msgctxt "shortcut window"
+msgid "Play/Pause"
+msgstr "Çal/Duraklat"
+
+#: data/ui/help-overlay.ui:58
+msgctxt "shortcut window"
+msgid "Next song"
+msgstr "Sonraki şarkı"
+
+#: data/ui/help-overlay.ui:65
+msgctxt "shortcut window"
+msgid "Previous song"
+msgstr "Önceki şarkı"
+
+#: data/ui/help-overlay.ui:72
+msgctxt "shortcut window"
+msgid "Toggle repeat"
+msgstr "Yinelemeyi aç/kapa"
+
+#: data/ui/help-overlay.ui:79
+msgctxt "shortcut window"
+msgid "Toggle shuffle"
+msgstr "Karıştırmayı aç/kapa"
+
+#: data/ui/help-overlay.ui:88
+msgctxt "shortcut window"
+msgid "Navigation"
+msgstr "Gezinme"
+
+#: data/ui/help-overlay.ui:92
+msgctxt "shortcut window"
+msgid "Go to Albums"
+msgstr "Albümlere git"
+
+#: data/ui/help-overlay.ui:99
+msgctxt "shortcut window"
+msgid "Go to Artists"
+msgstr "Sanatçılara git"
+
+#: data/ui/help-overlay.ui:106
+msgctxt "shortcut window"
+msgid "Go to Songs"
+msgstr "Şarkılara git"
+
+#: data/ui/help-overlay.ui:113
+msgctxt "shortcut window"
+msgid "Go to Playlists"
+msgstr "Çalma Listelerine git"
+
+#: data/ui/help-overlay.ui:120
+msgctxt "shortcut window"
+msgid "Go back"
+msgstr "Geri git"
+
+#: data/ui/LastfmDialog.ui:24
+msgid ""
+"Last.fm is a music discovery service that gives you personalised recommendations "
+"based on the music you listen to."
+msgstr ""
+"Last.fm, dinlediğiniz müziğe göre kişiselleştirilmiş öneriler sunan müzik keşif "
+"hizmetidir."
+
+#: data/ui/LastfmDialog.ui:35 gnomemusic/widgets/lastfmdialog.py:58
+msgid "Music Reporting Not Setup"
+msgstr "Müzik Bildirimi Kurulmadı"
+
+#: data/ui/LastfmDialog.ui:49 gnomemusic/widgets/lastfmdialog.py:61
+msgid "Login to your Last.fm account to report your music listening."
+msgstr "Müzik dinlemenizi bildirmek için Last.fm hesabınıza giriş yapın."
+
+#: data/ui/LastfmDialog.ui:60 gnomemusic/widgets/lastfmdialog.py:59
+msgid "Login"
+msgstr "Giriş"
+
+#: data/ui/LoadingNotification.ui:16
+msgid "Loading"
+msgstr "Yükleniyor"
+
+#: data/ui/PlayerToolbar.ui:105
+msgid "Previous"
+msgstr "Önceki"
+
+#: data/ui/PlayerToolbar.ui:139
+msgid "Next"
+msgstr "Sonraki"
+
+#: data/ui/PlaylistControls.ui:10
+msgid "_Delete"
+msgstr "_Sil"
+
+#: data/ui/PlaylistControls.ui:14
+msgid "_Rename…"
+msgstr "_Yeniden Adlandır…"
+
+#: data/ui/PlaylistControls.ui:44
+msgid "Playlist Name"
+msgstr "Çalma Listesi Adı"
+
+#: data/ui/PlaylistControls.ui:77
+msgid "_Done"
+msgstr "_Bitti"
+
+#: data/ui/PlaylistDialog.ui:66
+msgid "Enter a name for your first playlist"
+msgstr "İlk çalma listeniz için ad girin"
+
+#: data/ui/PlaylistDialog.ui:88
+msgid "C_reate"
+msgstr "Oluştu_r"
+
+#: data/ui/PlaylistDialog.ui:156
+msgid "New Playlist…"
+msgstr "Yeni Çalma Listesi…"
+
+#: data/ui/PlaylistDialog.ui:167
+msgid "Add"
+msgstr "Ekle"
+
+#: data/ui/PlaylistDialog.ui:208
+msgid "Add to Playlist"
+msgstr "Çalma Listesine Ekle"
+
+#: data/ui/PlaylistDialog.ui:224
+msgid "_Add"
+msgstr "_Ekle"
+
+#: data/ui/PlaylistNotification.ui:22
+msgid "_Undo"
+msgstr "_Geri Al"
+
+#: data/ui/SearchView.ui:47 gnomemusic/views/artistsview.py:46
+msgid "Artists"
+msgstr "Sanatçılar"
+
+#: data/ui/SearchView.ui:57 data/ui/SearchView.ui:108
+msgid "View All"
+msgstr "Tümünü Görüntüle"
+
+#: data/ui/SearchView.ui:98 gnomemusic/views/albumsview.py:50
+msgid "Albums"
+msgstr "Albümler"
+
+#: data/ui/SearchView.ui:149 gnomemusic/views/songsview.py:47
+msgid "Songs"
+msgstr "Şarkılar"
+
+#: data/ui/SelectionBarMenuButton.ui:7
+msgid "Select All"
+msgstr "Tümünü Seç"
+
+#: data/ui/SelectionBarMenuButton.ui:11
+msgid "Select None"
+msgstr "Hiçbirini Seçme"
+
+#: data/ui/SelectionBarMenuButton.ui:30 gnomemusic/widgets/headerbar.py:71
+msgid "Click on items to select them"
+msgstr "Seçmek için ögelere tıklayın"
+
+#: data/ui/SelectionToolbar.ui:9
+msgid "_Add to Playlist"
+msgstr "Çalma Listesine _Ekle"
+
+#: data/ui/SongWidgetMenu.ui:29
+msgid "Add to Playlist…"
+msgstr "Çalma Listesine Ekle…"
+
+#: data/ui/SongWidgetMenu.ui:39
+msgid "Remove From Playlist"
+msgstr "Çalma Listesinden Kaldır"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:898
+msgid "Most Played"
+msgstr "En Çok Çalınanlar"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:952
+msgid "Never Played"
+msgstr "Hiç Çalınmayanlar"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:1005
+msgid "Recently Played"
+msgstr "Son Çalınanlar"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:1068
+msgid "Recently Added"
+msgstr "Yeni Eklenenler"
+
+#. TRANSLATORS: this is a playlist name
+#: gnomemusic/grilowrappers/grltrackerplaylists.py:1131
+msgid "Favorite Songs"
+msgstr "Gözde Şarkılar"
+
+#: gnomemusic/gstplayer.py:408
+msgid "Unable to play the file"
+msgstr "Dosya çalınamıyor"
+
+#: gnomemusic/gstplayer.py:414
+msgid "_Find in {}"
+msgstr "{} içinde _bul"
+
+#. TRANSLATORS: separator for two codecs
+#: gnomemusic/gstplayer.py:424
+msgid " and "
+msgstr " ve "
+
+#. TRANSLATORS: separator for a list of codecs
+#: gnomemusic/gstplayer.py:427
+msgid ", "
+msgstr ", "
+
+#: gnomemusic/gstplayer.py:429
+msgid "{} is required to play the file, but is not installed."
+msgid_plural "{} are required to play the file, but are not installed."
+msgstr[0] "Dosyayı çalmak için {} gerekiyor ancak kurulu değil."
+
+#: gnomemusic/inhibitsuspend.py:63
+msgid "Playing music"
+msgstr "Çalan müzik"
+
+#. Translators: "shuffle" causes tracks to play in random order.
+#: gnomemusic/player.py:45
+msgid "Shuffle"
+msgstr "Karıştır"
+
+#: gnomemusic/player.py:46
+msgid "Repeat Song"
+msgstr "Şarkıyı Yinele"
+
+#: gnomemusic/player.py:47
+msgid "Repeat All"
+msgstr "Tümünü Yinele"
+
+#: gnomemusic/player.py:48
+msgid "Shuffle/Repeat Off"
+msgstr "Karıştırma/Yineleme Kapalı"
+
+#: gnomemusic/utils.py:80
+msgid "Unknown album"
+msgstr "Bilinmeyen albüm"
+
+#: gnomemusic/utils.py:101
+msgid "Unknown Artist"
+msgstr "Bilinmeyen Sanatçı"
+
+#: gnomemusic/views/emptyview.py:65
+msgid "Your XDG Music directory is not set."
+msgstr "XDG Müzik dizini ayarlanmadı."
+
+#: gnomemusic/views/emptyview.py:72
+msgid "Music Folder"
+msgstr "Müzik Klasörü"
+
+#. TRANSLATORS: This is a label to display a link to open user's music
+#. folder. {} will be replaced with the translated text 'Music folder'
+#: gnomemusic/views/emptyview.py:76
+msgid "The contents of your {} will appear here."
+msgstr "{} içeriğiniz burada görünecek."
+
+#: gnomemusic/views/emptyview.py:124
+msgid "No Music Found"
+msgstr "Müzik Bulunamadı"
+
+#: gnomemusic/views/emptyview.py:125
+msgid "Try a Different Search"
+msgstr "Başka Arama Deneyin"
+
+#: gnomemusic/views/emptyview.py:129
+msgid "GNOME Music could not connect to Tracker."
+msgstr "GNOME Müzik, Trackerʼa bağlanamadı."
+
+#: gnomemusic/views/emptyview.py:131
+msgid "Your music files cannot be indexed without Tracker running."
+msgstr "Müzik dosyalarınız Tracker çalışmadan dizinlenemez."
+
+#: gnomemusic/views/emptyview.py:137
+msgid "Your system Tracker version seems outdated."
+msgstr "Sisteminizin Tracker sürümü eski görünüyor."
+
+#: gnomemusic/views/emptyview.py:139
+msgid "Music needs Tracker version 3.0.0 or higher."
+msgstr "Müzik, Trackerʼın 3.0.0 sürümünü veya üstünü gerektirmektedir."
+
+#: gnomemusic/views/playlistsview.py:45
+msgid "Playlists"
+msgstr "Çalma Listeleri"
+
+#: gnomemusic/views/searchview.py:420
+msgid "Artists Results"
+msgstr "Sanatçı Sonuçları"
+
+#: gnomemusic/views/searchview.py:435
+msgid "Albums Results"
+msgstr "Albüm Sonuçları"
+
+#: gnomemusic/widgets/albumwidget.py:237
+msgid "{} minute"
+msgid_plural "{} minutes"
+msgstr[0] "{} dakika"
+
+#: gnomemusic/widgets/disclistboxwidget.py:75
+msgid "Disc {}"
+msgstr "Disk {}"
+
+#: gnomemusic/widgets/headerbar.py:68
+msgid "Selected {} song"
+msgid_plural "Selected {} songs"
+msgstr[0] "{} şarkı seçildi"
+
+#: gnomemusic/widgets/lastfmdialog.py:65
+msgid "Your music listening is reported to Last.fm."
+msgstr "Müzik dinlemeniz Last.fm’e bildirildi."
+
+#: gnomemusic/widgets/lastfmdialog.py:67
+msgid "Your music listening is not reported to Last.fm."
+msgstr "Müzik dinlemeniz Last.fm’e bildirilmedi."
+
+#. TRANSLATORS: displays the username of the Last.fm account
+#: gnomemusic/widgets/lastfmdialog.py:71
+msgid "Logged in as {}"
+msgstr "{} olarak giriş yapıldı"
+
+#: gnomemusic/widgets/lastfmdialog.py:72
+msgid "Configure"
+msgstr "Yapılandır"
+
+#: gnomemusic/widgets/notificationspopup.py:216
+msgid "Playlist {} removed"
+msgstr "{} çalma listesi kaldırıldı"
+
+#: gnomemusic/widgets/notificationspopup.py:220
+msgid "{} removed from {}"
+msgstr "{}, {}ʼden silindi"
+
+#: gnomemusic/widgets/playertoolbar.py:174
+msgid "Pause"
+msgstr "Duraklat"
+
+#: gnomemusic/widgets/playlistcontrols.py:132
+msgid "{} Song"
+msgid_plural "{} Songs"
+msgstr[0] "{} Şarkı"
+
+#~ msgid ""
+#~ "An easy way to play your music. Automatically discover music on your computer, "
+#~ "the local network and internet services."
+#~ msgstr ""
+#~ "Müziğinizi çalmanın kolay yolu. Bilgisayarınızdaki, yerel ağınızdaki ve internet "
+#~ "hizmetlerinizdeki müziği kendiliğinden keşfeder."
+
+#~ msgid ""
+#~ "Find tracks in your local collection, get music from DLNA servers or try "
+#~ "something new with the Jamendo and Magnatune services."
+#~ msgstr ""
+#~ "Yerel derleminizdeki parçaları bulun, DLNA sunucularından müzik alın veya "
+#~ "Jamendo ve Magnatune hizmetleriyle yeni şeyler deneyin."
+
+#~ msgid "Inital state has been displayed"
+#~ msgstr "İlk durum görüntülendi"
+
+#~ msgid "Set to true when initial state has been displayed"
+#~ msgstr "İlk durum görüntülendiğinde doğru olarak ayarla"
+
+#~ msgid "Released"
+#~ msgstr "Yayım"
+
+#~ msgid "Running Length"
+#~ msgstr "Uzunluk"
+
+#~ msgid "Composer"
+#~ msgstr "Besteci"
+
+#~ msgctxt "context menu item"
+#~ msgid "Play"
+#~ msgstr "Çal"
+
+#~ msgid "Hey DJ"
+#~ msgstr "Hey DJ"
+
+#~ msgid "All"
+#~ msgstr "Tümü"
+
+#~ msgid "Artist"
+#~ msgstr "Sanatçı"
+
+#~ msgid "Album"
+#~ msgstr "Albüm"
+
+#~ msgid "Track Title"
+#~ msgstr "Parça Adı"
+
+#~ msgid "Local"
+#~ msgstr "Yerel"
+
+#~ msgid "Sources"
+#~ msgstr "Kaynaklar"
+
+#~ msgid "Match"
+#~ msgstr "Eşleştir"
+
+#~ msgid "@icon@"
+#~ msgstr "@icon@"
+
+#~ msgid "Untitled"
+#~ msgstr "Başlıksız"
+
+#~ msgid "_Quit"
+#~ msgstr "_Çıkış"
+
+#~ msgid "Music is the new GNOME music playing application."
+#~ msgstr "Müzik, GNOME’un yeni müzik çalma uygulamasıdır."
+
+#~| msgid "gnome-music"
+#~ msgid "org.gnome.Music"
+#~ msgstr "org.gnome.Music"
+
+#~ msgid "Selected %d item"
+#~ msgid_plural "Selected %d items"
+#~ msgstr[0] "%d öge seçildi"
+
+#~ msgid "%d min"
+#~ msgstr "%d dk"
+
+#~ msgid "Empty"
+#~ msgstr "Boş"
+
+#~ msgid "Select Playlist"
+#~ msgstr "Çalma Listesi Seç"
+
+#~ msgid "Search mode"
+#~ msgstr "Arama kipi"
+
+#~ msgid "If true, the search bar is shown."
+#~ msgstr "Etkinse, arama çubuğu gösterilir."
+
+#~ msgid "Notifications mode"
+#~ msgstr "Bildirim kipi"
+
+#~ msgid "Enables or disables playback notifications"
+#~ msgstr "Çalma bildirimlerini etkinleştirir veya devre dışı bırakır"
+
+#~ msgid "the|a|an"
+#~ msgstr "the|a|an"
+
+#~ msgid "Max chars to display in track name on Artist view"
+#~ msgstr "Sanatçı görünümünde gösterilen parça adı için en fazla karakter sayısı"
+
+#~ msgid ""
+#~ "This setting modifies the amount of chars for track title on Artist view before "
+#~ "its been ellipsized. Set this to -1 to disable"
+#~ msgstr ""
+#~ "Bu ayar sanatçı görünümünde gösterilen parça adının üç nokta koyulmadan önce "
+#~ "görünecek karakter sayısını değiştirir. Devre dışı bırakmak için -1 olarak "
+#~ "ayarlayın."
+
+#~ msgid "Not playing"
+#~ msgstr "Yürütülmüyor"
+
+#~ msgid "by %s, from %s"
+#~ msgstr "%s tarafından, %s albümünde"
+
+#~ msgid "the a an"
+#~ msgstr "the"
+
+#~ msgid "All Artists"
+#~ msgstr "Tüm Sanatçılar"

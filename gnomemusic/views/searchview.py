@@ -1,0 +1,522 @@
+# Copyright (c) 2016 The GNOME Music Developers
+#
+# GNOME Music is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# GNOME Music is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with GNOME Music; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+# The GNOME Music authors hereby grant permission for non-GPL compatible
+# GStreamer plugins to be used and distributed together with GStreamer
+# and GNOME Music.  This permission is above and beyond the permissions
+# granted by the GPL license by which GNOME Music is covered.  If you
+# modify this code, you may extend this exception to your version of the
+# code, but you are not obligated to do so.  If you do not wish to do so,
+# delete this exception statement from your version.
+
+from __future__ import annotations
+from enum import IntEnum
+from gettext import gettext as _
+from typing import Optional
+import typing
+
+from gi.repository import Gdk, GObject, Gtk
+
+from gnomemusic.search import Search
+from gnomemusic.widgets.albumcover import AlbumCover
+from gnomemusic.widgets.albumwidget import AlbumWidget
+from gnomemusic.widgets.headerbar import HeaderBar
+from gnomemusic.widgets.artistalbumswidget import ArtistAlbumsWidget
+from gnomemusic.widgets.artistsearchtile import ArtistSearchTile
+from gnomemusic.widgets.songwidget import SongWidget
+from gnomemusic.widgets.songwidgetmenu import SongWidgetMenu
+if typing.TYPE_CHECKING:
+    from gnomemusic.application import Application
+    from gnomemusic.coresong import CoreSong
+
+
+@Gtk.Template(resource_path="/org/gnome/Music/ui/SearchView.ui")
+class SearchView(Gtk.Stack):
+    """Gridlike view of search results.
+
+    Three sections: artists, albums, songs.
+    """
+
+    __gtype_name__ = "SearchView"
+
+    class State(IntEnum):
+        """The different states of SearchView
+        """
+        MAIN = 0
+        ALL_ALBUMS = 1
+        ALL_ARTISTS = 2
+        ALBUM = 3
+        ARTIST = 4
+
+    search_state = GObject.Property(type=int, default=Search.State.NONE)
+    selection_mode = GObject.Property(type=bool, default=False)
+    state = GObject.Property(type=int, default=State.MAIN)
+    title = GObject.Property(
+        type=str, default="", flags=GObject.ParamFlags.READABLE)
+
+    _album_header = Gtk.Template.Child()
+    _album_flowbox = Gtk.Template.Child()
+    _album_all_flowbox = Gtk.Template.Child()
+    _all_search_results = Gtk.Template.Child()
+    _artist_header = Gtk.Template.Child()
+    _artist_all_flowbox = Gtk.Template.Child()
+    _artist_flowbox = Gtk.Template.Child()
+    _scrolled_album_widget = Gtk.Template.Child()
+    _search_results = Gtk.Template.Child()
+    _songs_header = Gtk.Template.Child()
+    _songs_listbox = Gtk.Template.Child()
+    _songs_listbox_ctrlr = Gtk.Template.Child()
+    _view_all_albums = Gtk.Template.Child()
+    _view_all_artists = Gtk.Template.Child()
+
+    def __init__(self, application: Application) -> None:
+        """Initialize SearchView
+
+        :param GtkApplication application: The Application object
+        """
+        super().__init__(transition_type=Gtk.StackTransitionType.CROSSFADE)
+
+        self.props.name = "search"
+
+        self._application = application
+        self._coremodel = application.props.coremodel
+        self._model = self._coremodel.props.songs_search
+        self._album_model = self._coremodel.props.albums_search
+        self._album_filter = self._coremodel.props.albums_search_filter
+        self._album_filter.set_filter_func(
+            self._core_filter, self._album_model, 12)
+
+        self._artist_model = self._coremodel.props.artists_search
+        self._artist_filter = self._coremodel.props.artists_search_filter
+        self._artist_filter.set_filter_func(
+            self._core_filter, self._artist_model, 6)
+
+        self._model.connect_after(
+            "items-changed", self._on_model_items_changed)
+        self._songs_listbox.bind_model(self._model, self._create_song_widget)
+        self._on_model_items_changed(self._model, 0, 0, 0)
+
+        self._album_filter.connect_after(
+            "items-changed", self._on_album_model_items_changed)
+        self._album_flowbox.bind_model(
+            self._album_filter, self._create_album_widget)
+        self._album_flowbox.connect(
+            "size-allocate", self._on_album_flowbox_size_allocate)
+        self._on_album_model_items_changed(self._album_filter, 0, 0, 0)
+
+        self._artist_filter.connect_after(
+            "items-changed", self._on_artist_model_items_changed)
+        self._artist_flowbox.bind_model(
+            self._artist_filter, self._create_artist_widget)
+        self._artist_flowbox.connect(
+            "size-allocate", self._on_artist_flowbox_size_allocate)
+        self._on_artist_model_items_changed(self._artist_filter, 0, 0, 0)
+
+        self._player = self._application.props.player
+
+        self._window = application.props.window
+        self._headerbar = self._window._headerbar
+
+        self.connect("notify::selection-mode", self._on_selection_mode_changed)
+
+        self.bind_property(
+            'selection-mode', self._window, 'selection-mode',
+            GObject.BindingFlags.BIDIRECTIONAL)
+
+        self._album_widget = AlbumWidget(self._application)
+        self._album_widget.bind_property(
+            "selection-mode", self, "selection-mode",
+            GObject.BindingFlags.BIDIRECTIONAL)
+        self._scrolled_album_widget.add(self._album_widget)
+
+        self._scrolled_artist_window: Optional[Gtk.ScrolledWindow] = None
+
+        self._search_mode_active = False
+
+    def _core_filter(self, coreitem, coremodel, nr_items):
+        if coremodel.get_n_items() <= 5:
+            return True
+
+        for i in range(nr_items):
+            if coremodel.get_item(i) == coreitem:
+                return True
+
+        return False
+
+    def _create_song_widget(self, coresong: CoreSong) -> Gtk.ListBoxRow:
+        song_widget = SongWidget(coresong, False, True)
+        song_widget.props.show_song_number = False
+        song_widget.props.menu = SongWidgetMenu(
+            self._application, song_widget, coresong)
+
+        self.bind_property(
+            "selection-mode", song_widget, "selection-mode",
+            GObject.BindingFlags.BIDIRECTIONAL
+            | GObject.BindingFlags.SYNC_CREATE)
+
+        return song_widget
+
+    def _create_album_widget(self, corealbum):
+        album_widget = AlbumCover(corealbum)
+        album_widget.retrieve()
+
+        self.bind_property(
+            "selection-mode", album_widget, "selection-mode",
+            GObject.BindingFlags.SYNC_CREATE
+            | GObject.BindingFlags.BIDIRECTIONAL)
+
+        # NOTE: Adding SYNC_CREATE here will trigger all the nested
+        # models to be created. This will slow down initial start,
+        # but will improve initial 'select all' speed.
+        album_widget.bind_property(
+            "selected", corealbum, "selected",
+            GObject.BindingFlags.BIDIRECTIONAL)
+
+        return album_widget
+
+    def _create_artist_widget(self, coreartist):
+        artist_tile = ArtistSearchTile(coreartist)
+
+        self.bind_property(
+            "selection-mode", artist_tile, "selection-mode",
+            GObject.BindingFlags.SYNC_CREATE
+            | GObject.BindingFlags.BIDIRECTIONAL)
+
+        return artist_tile
+
+    def _on_album_model_items_changed(self, model, position, removed, added):
+        items_found = model.get_n_items() > 0
+        self._album_header.props.visible = items_found
+        self._album_flowbox.props.visible = items_found
+        self._check_visibility()
+
+        nr_albums = self._album_model.get_n_items()
+        self._view_all_albums.props.visible = (nr_albums > model.get_n_items())
+
+        def set_child_visible(child):
+            child.props.visible = True
+
+        self._album_flowbox.foreach(set_child_visible)
+
+    def _on_artist_model_items_changed(self, model, position, removed, added):
+        items_found = model.get_n_items() > 0
+        self._artist_header.props.visible = items_found
+        self._artist_flowbox.props.visible = items_found
+        self._check_visibility()
+
+        nr_artists = self._artist_model.get_n_items()
+        self._view_all_artists.props.visible = (
+            nr_artists > model.get_n_items())
+
+        def set_child_visible(child):
+            child.props.visible = True
+
+        self._artist_flowbox.foreach(set_child_visible)
+
+    def _on_model_items_changed(self, model, position, removed, added):
+        items_found = model.get_n_items() > 0
+        self._songs_header.props.visible = items_found
+        self._songs_listbox.props.visible = items_found
+        self._check_visibility()
+
+    def _check_visibility(self):
+        if not self.props.search_mode_active:
+            return
+
+        items_found = (self._model.get_n_items() > 0
+                       or self._artist_model.get_n_items() > 0
+                       or self._album_model.get_n_items() > 0)
+        if items_found:
+            self.props.search_state = Search.State.RESULT
+        else:
+            self.props.search_state = Search.State.NO_RESULT
+
+    @Gtk.Template.Callback()
+    def _song_activated(
+            self, list_box: Gtk.ListBox, song_widget: SongWidget) -> bool:
+        if song_widget.props.select_click:
+            song_widget.props.select_click = False
+            return True
+
+        event = Gtk.get_current_event()
+        (_, state) = event.get_state()
+        mod_mask = Gtk.accelerator_get_default_mod_mask()
+        if ((state & mod_mask) == Gdk.ModifierType.CONTROL_MASK
+                and not self.props.selection_mode):
+            self.props.selection_mode = True
+            song_widget.props.select_click = True
+            song_widget.props.coresong.props.selected = True
+            return True
+
+        if self.props.selection_mode:
+            song_widget.props.select_click = True
+            selection_state = song_widget.props.selected
+            song_widget.props.selected = not selection_state
+            song_widget.props.coresong.props.selected = not selection_state
+            return True
+
+        (_, button) = event.get_button()
+        if (button == Gdk.BUTTON_PRIMARY
+                and not self.props.selection_mode):
+            coresong = song_widget.props.coresong
+            self._coremodel.props.active_core_object = coresong
+            self._player.play(coresong)
+
+        return True
+
+    @Gtk.Template.Callback()
+    def _songs_listbox_right_click(
+            self, gesture: Gtk.GestureMultiPress, n_press: int, x: int,
+            y: int) -> None:
+        song_widget = self._songs_listbox.get_row_at_y(y)
+
+        _, y0 = song_widget.translate_coordinates(self._songs_listbox, 0, 0)
+        row_height = song_widget.get_allocated_height()
+        rect = Gdk.Rectangle()
+        rect.x = x
+        rect.y = y0 + 0.5 * row_height
+
+        song_context_menu = SongWidgetMenu(
+            self._application, song_widget, song_widget.props.coresong)
+        song_context_menu.props.relative_to = self._songs_listbox
+        song_context_menu.props.pointing_to = rect
+        song_context_menu.popup()
+
+    def _on_album_flowbox_size_allocate(self, widget, allocation, data=None):
+        nb_children = self._album_filter.get_n_items()
+        if nb_children == 0:
+            return
+
+        first_child = self._album_flowbox.get_child_at_index(0)
+        child_height = first_child.get_allocation().height
+        if allocation.height > 2.5 * child_height:
+            for i in range(nb_children - 1, -1, -1):
+                child = self._album_flowbox.get_child_at_index(i)
+                if child.props.visible is True:
+                    child.props.visible = False
+                    return
+
+        children_hidden = False
+        for idx in range(nb_children):
+            child = self._album_flowbox.get_child_at_index(idx)
+            if not child.props.visible:
+                children_hidden = True
+                break
+        if children_hidden is False:
+            return
+
+        last_visible_child = self._album_flowbox.get_child_at_index(idx - 1)
+        first_row_last = self._album_flowbox.get_child_at_index((idx - 1) // 2)
+        second_row_pos = last_visible_child.get_allocation().x
+        first_row_pos = first_row_last.get_allocation().x
+        child_width = last_visible_child.get_allocation().width
+        nb_children_to_add = (first_row_pos - second_row_pos) // child_width
+        nb_children_to_add = min(nb_children_to_add + idx, nb_children)
+        for i in range(idx, nb_children_to_add):
+            child = self._album_flowbox.get_child_at_index(i)
+            child.props.visible = True
+
+    def _on_artist_flowbox_size_allocate(self, widget, allocation, data=None):
+        nb_children = self._artist_filter.get_n_items()
+        if nb_children == 0:
+            return
+
+        first_child = self._artist_flowbox.get_child_at_index(0)
+        # FIXME: It looks like it is possible that the widget is not
+        # yet created, resulting in a crash with first_child being
+        # None.
+        # Look for a cleaner solution.
+        if first_child is None:
+            return
+
+        child_height = first_child.get_allocation().height
+        if allocation.height > 1.5 * child_height:
+            for i in range(nb_children - 1, -1, -1):
+                child = self._artist_flowbox.get_child_at_index(i)
+                if child.props.visible is True:
+                    child.props.visible = False
+                    return
+
+        children_hidden = False
+        for idx in range(nb_children):
+            child = self._artist_flowbox.get_child_at_index(idx)
+            if not child.props.visible:
+                children_hidden = True
+                break
+        if children_hidden is False:
+            return
+
+        last_child = self._artist_flowbox.get_child_at_index(idx - 1)
+        last_child_allocation = last_child.get_allocation()
+        child_width = last_child_allocation.width
+        if (last_child_allocation.x + 2 * child_width) < allocation.width:
+            child = self._artist_flowbox.get_child_at_index(idx)
+            child.props.visible = True
+
+    @Gtk.Template.Callback()
+    def _on_album_activated(self, widget, child, user_data=None):
+        corealbum = child.props.corealbum
+        if self.props.selection_mode:
+            corealbum.props.selected = not corealbum.props.selected
+            return
+
+        # Update and display the album widget if not in selection mode
+        self._album_widget.props.corealbum = corealbum
+
+        self.props.state = SearchView.State.ALBUM
+        self._headerbar.props.state = HeaderBar.State.SEARCH
+        self._headerbar.props.title = corealbum.props.title
+        self._headerbar.props.subtitle = corealbum.props.artist
+
+        self.set_visible_child(self._scrolled_album_widget)
+        self.props.search_mode_active = False
+
+    @Gtk.Template.Callback()
+    def _on_artist_activated(self, widget, child, user_data=None):
+        coreartist = child.props.coreartist
+        if self.props.selection_mode:
+            return
+
+        artist_albums_widget = ArtistAlbumsWidget(
+            coreartist, self._application)
+        # FIXME: Recreating a view here. Alternate solution is used
+        # in AlbumsView: one view created and an update function.
+        # Settle on one design.
+        self._scrolled_artist_window = Gtk.ScrolledWindow()
+        self._scrolled_artist_window.add(artist_albums_widget)
+        self._scrolled_artist_window.props.visible = True
+        self.add(self._scrolled_artist_window)
+        artist_albums_widget.show()
+
+        self.bind_property(
+            "selection-mode", artist_albums_widget, "selection-mode",
+            GObject.BindingFlags.BIDIRECTIONAL)
+
+        self.props.state = SearchView.State.ARTIST
+        self._headerbar.props.state = HeaderBar.State.SEARCH
+        self._headerbar.props.title = coreartist.props.artist
+        self._headerbar.props.subtitle = None
+
+        self.set_visible_child(self._scrolled_artist_window)
+        self.props.search_mode_active = False
+
+    @Gtk.Template.Callback()
+    def _on_all_artists_clicked(self, widget, event, user_data=None):
+        self.props.state = SearchView.State.ALL_ARTISTS
+        self._headerbar.props.state = HeaderBar.State.SEARCH
+        self._headerbar.props.title = _("Artists Results")
+        self._headerbar.props.subtitle = None
+
+        self._artist_all_flowbox.props.visible = True
+        self._album_all_flowbox.props.visible = False
+        self._artist_all_flowbox.bind_model(
+            self._artist_model, self._create_artist_widget)
+
+        self.props.visible_child = self._all_search_results
+        self.props.search_mode_active = False
+
+    @Gtk.Template.Callback()
+    def _on_all_albums_clicked(self, widget, event, user_data=None):
+        self.props.state = SearchView.State.ALL_ALBUMS
+        self._headerbar.props.state = HeaderBar.State.SEARCH
+        self._headerbar.props.title = _("Albums Results")
+        self._headerbar.props.subtitle = None
+
+        self._artist_all_flowbox.props.visible = False
+        self._album_all_flowbox.props.visible = True
+        self._album_all_flowbox.bind_model(
+            self._album_model, self._create_album_widget)
+
+        self.props.visible_child = self._all_search_results
+        self.props.search_mode_active = False
+
+    def _select_all(self, value):
+        def child_select(child):
+            child.props.selected = value
+
+        if self.props.state == SearchView.State.MAIN:
+            with self._model.freeze_notify():
+                def song_select(child):
+                    child.props.coresong.props.selected = value
+
+                self._songs_listbox.foreach(song_select)
+                self._album_flowbox.foreach(child_select)
+                self._artist_flowbox.foreach(child_select)
+        elif self.props.state == SearchView.State.ALL_ALBUMS:
+            with self._model.freeze_notify():
+                self._album_all_flowbox.foreach(child_select)
+        elif self.props.state == SearchView.State.ALL_ARTISTS:
+            with self._model.freeze_notify():
+                self._artist_all_flowbox.foreach(child_select)
+        elif self.props.state == SearchView.State.ALBUM:
+            view = self._album_widget
+            if value is True:
+                view.select_all()
+            else:
+                view.deselect_all()
+        elif self.props.state == SearchView.State.ARTIST:
+            view = self.get_visible_child().get_child().get_child()
+            if value is True:
+                view.select_all()
+            else:
+                view.deselect_all()
+
+    def select_all(self):
+        self._select_all(True)
+
+    def deselect_all(self):
+        self._select_all(False)
+
+    def _back_button_clicked(self, widget, data=None):
+        if self.get_visible_child() == self._search_results:
+            return
+        elif self.get_visible_child() == self._scrolled_artist_window:
+            self.remove(self._scrolled_artist_window)
+            self._scrolled_artist_window.destroy()
+            self._scrolled_artist_window = None
+
+        self.set_visible_child(self._search_results)
+        self.props.search_mode_active = True
+        self.props.state = SearchView.State.MAIN
+        self._headerbar.props.state = HeaderBar.State.MAIN
+
+    def _on_selection_mode_changed(self, widget, data=None):
+        if (not self.props.selection_mode
+                and self.get_parent().get_visible_child() == self):
+            self.deselect_all()
+
+    @GObject.Property(type=bool, default=False)
+    def search_mode_active(self):
+        """Get search mode status.
+
+        :returns: the search mode status
+        :rtype: bool
+        """
+        return self._search_mode_active
+
+    @search_mode_active.setter  # type: ignore
+    def search_mode_active(self, value):
+        """Set search mode status.
+
+        :param bool mode: new search mode
+        """
+        # FIXME: search_mode_active should not change search_state.
+        # This is necessary because Search state cannot interact with
+        # the child views.
+        self._search_mode_active = value
+        if (not self._search_mode_active
+                and self.get_visible_child() == self._search_results):
+            self.props.search_state = Search.State.NONE

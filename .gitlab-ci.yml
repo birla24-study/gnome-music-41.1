@@ -1,0 +1,36 @@
+include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
+
+stages:
+  - check
+  - build-flatpak
+  - deploy
+
+variables:
+  BUNDLE: "gnome-music-dev.flatpak"
+  GIT_SUBMODULE_STRATEGY: normal
+
+flatpak:
+    extends: .flatpak
+    stage: build-flatpak
+    variables:
+        APP_ID: "org.gnome.Music.Devel"
+        FLATPAK_MODULE: "gnome-music"
+        MANIFEST_PATH: "org.gnome.Music.json"
+        RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
+
+nightly:
+    extends: .publish_nightly
+    dependencies:
+        - flatpak
+
+flake8:
+  stage: check
+  script:
+    - dnf install -y python3-flake8
+    - flake8 --ignore E402,W503 --show-source gnomemusic/
+
+mypy:
+  stage: check
+  script:
+    - dnf install -y python3-mypy
+    - mypy --ignore-missing-imports --disallow-incomplete-defs gnomemusic
