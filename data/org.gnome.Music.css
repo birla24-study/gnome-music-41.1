@@ -139,3 +139,16 @@ list {
 .songwidget {
   padding: 12px;
 }
+
+.main-switcher {
+    margin: 0px;
+    padding: 2px 0px;
+    min-height: 30px;
+}
+
+headerbar .main-switcher button,
+.main-switcher button {
+    padding: 2px 8px;
+    min-height: 24px;
+    margin: 0px;
+}

@@ -108,8 +108,9 @@ class HeaderBar(Handy.HeaderBar):
 
         self._selection_mode = False
 
-        self._stack_switcher = Handy.ViewSwitcher(
-            can_focus=False, halign="center")
+        self._stack_switcher = Gtk.StackSwitcher(
+            can_focus=False, halign="center", valign="center")
+        self._stack_switcher.get_style_context().add_class("main-switcher")
         self._stack_switcher.show()
 
         self._selection_menu = SelectionBarMenuButton()
