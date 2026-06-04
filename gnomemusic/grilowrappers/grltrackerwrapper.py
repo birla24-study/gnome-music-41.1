@@ -734,8 +734,8 @@ class GrlTrackerWrapper(GObject.GObject):
         self._notificationmanager.push_loading()
         artist_name = media.get_artist() or ""
         import re
-        artist_esc = re.escape(artist_name).replace('"', '\\"')
-        pattern = f"(^|[/,;])\\\\s*{artist_esc}\\\\s*($|[/,;])"
+        artist_esc = re.escape(artist_name).replace(r"\ ", " ").replace('"', '\\"')
+        pattern = f"(^|[/,;])[[:space:]]*{artist_esc}[[:space:]]*($|[/,;])"
 
         query = """
         SELECT
