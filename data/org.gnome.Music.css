@@ -142,8 +142,9 @@ list {
 
 .main-switcher {
     margin: 0px;
-    padding: 2px 0px;
+    padding: 2px 3px;
     min-height: 30px;
+    border-radius: 10px;
 }
 
 headerbar .main-switcher button,
@@ -151,4 +152,5 @@ headerbar .main-switcher button,
     padding: 2px 8px;
     min-height: 24px;
     margin: 0px;
+    border-radius: 9px;
 }
