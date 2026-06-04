@@ -308,10 +308,31 @@ class GrlTrackerWrapper(GObject.GObject):
                 self._album_ids = album_ids
                 return
 
-            if media.get_id() in self._album_ids.keys():
-                album = self._album_ids[media.get_id()]
+            title_lower = utils.get_media_title(media).lower()
+            existing_album = None
+            for alb in self._albums_model:
+                if alb.props.title.lower() == title_lower:
+                    existing_album = alb
+                    break
+            if not existing_album:
+                for alb in album_ids.values():
+                    if alb.props.title.lower() == title_lower:
+                        existing_album = alb
+                        break
+
+            if existing_album:
+                if not hasattr(existing_album, "album_ids"):
+                    existing_album.album_ids = [existing_album.props.media.get_id()]
+                if media.get_id() not in existing_album.album_ids:
+                    existing_album.album_ids.append(media.get_id())
+                album = existing_album
             else:
-                album = CoreAlbum(self._application, media)
+                if media.get_id() in self._album_ids.keys():
+                    album = self._album_ids[media.get_id()]
+                else:
+                    album = CoreAlbum(self._application, media)
+                if not hasattr(album, "album_ids"):
+                    album.album_ids = [media.get_id()]
 
             album_ids[media.get_id()] = album
 
@@ -592,9 +613,30 @@ class GrlTrackerWrapper(GObject.GObject):
                 self._notificationmanager.pop_loading()
                 return
 
-            album = CoreAlbum(self._application, media)
-            self._album_ids[media.get_id()] = album
-            albums_added.append(album)
+            title_lower = utils.get_media_title(media).lower()
+            existing_album = None
+            for alb in self._albums_model:
+                if alb.props.title.lower() == title_lower:
+                    existing_album = alb
+                    break
+            if not existing_album:
+                for alb in albums_added:
+                    if alb.props.title.lower() == title_lower:
+                        existing_album = alb
+                        break
+
+            if existing_album:
+                if not hasattr(existing_album, "album_ids"):
+                    existing_album.album_ids = [existing_album.props.media.get_id()]
+                if media.get_id() not in existing_album.album_ids:
+                    existing_album.album_ids.append(media.get_id())
+                self._album_ids[media.get_id()] = existing_album
+            else:
+                album = CoreAlbum(self._application, media)
+                album.album_ids = [media.get_id()]
+                self._album_ids[media.get_id()] = album
+                albums_added.append(album)
+
             if len(albums_added) == self._SPLICE_SIZE:
                 self._albums_model.splice(
                     self._albums_model.get_n_items(), 0, albums_added)
@@ -735,7 +777,7 @@ class GrlTrackerWrapper(GObject.GObject):
         artist_name = media.get_artist() or ""
         import re
         artist_esc = re.escape(artist_name).replace(r"\ ", " ").replace('"', '\\"')
-        pattern = f"(^|[/,;])[[:space:]]*{artist_esc}[[:space:]]*($|[/,;])"
+        pattern = f"(^|[/,;])[ \t]*{artist_esc}[ \t]*($|[/,;])"
 
         query = """
         SELECT
@@ -813,6 +855,13 @@ class GrlTrackerWrapper(GObject.GObject):
         """
         self._notificationmanager.push_loading()
         album_id = media.get_id()
+        corealbum = self._album_ids.get(album_id)
+        if corealbum and hasattr(corealbum, "album_ids"):
+            album_ids_list = corealbum.album_ids
+        else:
+            album_ids_list = [album_id]
+
+        album_ids_str = ", ".join([f"<{aid}>" for aid in album_ids_list])
 
         query = """
         SELECT
@@ -828,7 +877,7 @@ class GrlTrackerWrapper(GObject.GObject):
                     WHERE {
                         ?song a nmm:MusicPiece;
                                 nmm:musicAlbum ?album .
-                        FILTER ( ?album = <%(album_id)s> )
+                        FILTER ( ?album IN ( %(album_ids_str)s ) )
                         %(location_filter)s
                     }
                     ORDER BY ?albumDiscNumber
@@ -838,9 +887,11 @@ class GrlTrackerWrapper(GObject.GObject):
         """.replace('\n', ' ').strip() % {
             "miner_fs_busname": self._tracker_wrapper.props.miner_fs_busname,
             "media_type": int(Grl.MediaType.CONTAINER),
-            "album_id": album_id,
+            "album_ids_str": album_ids_str,
             'location_filter': self._tracker_wrapper.location_filter()
         }
+
+        disc_nrs = set()
 
         def _disc_nr_cb(
                 source: Grl.Source, op_id: int, media: Optional[Grl.Media],
@@ -855,6 +906,10 @@ class GrlTrackerWrapper(GObject.GObject):
                 return
 
             disc_nr = media.get_album_disc_number()
+            if disc_nr in disc_nrs:
+                return
+            disc_nrs.add(disc_nr)
+
             coredisc = CoreDisc(self._application, media, disc_nr)
             disc_model.append(coredisc)
 
@@ -876,7 +931,33 @@ class GrlTrackerWrapper(GObject.GObject):
         :param int disc_nr: The disc number
         :param callback: The callback to call for every song added
         """
+        seen_urls = set()
+        seen_tracks = set()
+
+        def callback_wrapper(source, op_id, song_media, remaining, error):
+            if song_media is not None:
+                url = song_media.get_url()
+                track_nr = song_media.get_track_number()
+                title = song_media.get_title()
+
+                if url in seen_urls or (track_nr, title) in seen_tracks:
+                    return
+
+                if url:
+                    seen_urls.add(url)
+                if track_nr and title:
+                    seen_tracks.add((track_nr, title))
+
+            callback(source, op_id, song_media, remaining, error)
+
         album_id: str = media.get_id()
+        corealbum = self._album_ids.get(album_id)
+        if corealbum and hasattr(corealbum, "album_ids"):
+            album_ids_list = corealbum.album_ids
+        else:
+            album_ids_list = [album_id]
+
+        album_ids_str = ", ".join([f"<{aid}>" for aid in album_ids_list])
 
         query = """
         SELECT
@@ -906,7 +987,7 @@ class GrlTrackerWrapper(GObject.GObject):
                                 nmm:musicAlbum ?album .
                         OPTIONAL { ?song nie:contentCreated ?date . }
                         FILTER (
-                            ?album = <%(album_id)s> &&
+                            ?album IN ( %(album_ids_str)s ) &&
                             nmm:setNumber(nmm:musicAlbumDisc(?song)) =
                                 %(disc_nr)s
                         )
@@ -922,7 +1003,7 @@ class GrlTrackerWrapper(GObject.GObject):
         }
         """.replace('\n', ' ').strip() % {
             "media_type": int(Grl.MediaType.AUDIO),
-            'album_id': album_id,
+            'album_ids_str': album_ids_str,
             'disc_nr': disc_nr,
             'location_filter': self._tracker_wrapper.location_filter(),
             'miner_fs_busname': self._tracker_wrapper.props.miner_fs_busname
@@ -941,7 +1022,7 @@ class GrlTrackerWrapper(GObject.GObject):
         ]
 
         self.props.source.query(
-            query, metadata_keys, self._fast_options, callback)
+            query, metadata_keys, self._fast_options, callback_wrapper)
 
     def search(self, text: str) -> None:
         # FIXME: Searches are limited to not bog down the UI with
