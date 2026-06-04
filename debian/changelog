@@ -1,0 +1,568 @@
+gnome-music (41.1-0ubuntu1) jammy; urgency=medium
+
+  * New upstream release (LP: #1970214)
+  * Drop meson patch: applied in new release
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 25 Apr 2022 09:26:44 -0400
+
+gnome-music (41.0-4) unstable; urgency=medium
+
+  * Cherry-pick patch to drop obsolete GNOME MediaKeys support
+  * Cherry-pick patches to support GNOME 42 dark theme preference
+  * debian/control.in: Bump minimum libhandy to 1.5.90
+
+ -- Jeremy Bicha <jeremy.bicha@canonical.com>  Thu, 17 Feb 2022 12:54:10 -0500
+
+gnome-music (41.0-2) unstable; urgency=medium
+
+  * Team upload
+  * d/p/meson-Remove-incorrect-i18n.merge_file-argument.patch:
+    Add patch from upstream to fix FTBFS with Meson 0.61 (Closes: #1005548)
+
+ -- Simon McVittie <smcv@debian.org>  Sun, 13 Feb 2022 15:34:35 +0000
+
+gnome-music (41.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/control.in: Bump minimum glib and gtk3
+  * debian/control.in: Depend and Build-Depend on libhandy
+  * debian/copyright: Update
+  * Bump Standards-Version to 4.6.0
+
+ -- Jeremy Bicha <jbicha@debian.org>  Sun, 19 Sep 2021 08:14:10 -0400
+
+gnome-music (40.1.1-4) unstable; urgency=medium
+
+  * Team upload
+  * Depend on a compatible version of grilo-plugins now that it's available.
+    We need the grl-tracker3 plugin, which is only available on this side
+    of the Tracker 3 transition. (Closes: #993820)
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 07 Sep 2021 01:43:23 +0100
+
+gnome-music (40.1.1-3) unstable; urgency=medium
+
+  * Bump debhelper-compat to 13
+  * debian/rules: Drop unneeded -Wl,--as-needed
+  * Release to unstable
+
+ -- Jeremy Bicha <jbicha@debian.org>  Tue, 31 Aug 2021 07:40:42 -0400
+
+gnome-music (40.1.1-2) experimental; urgency=medium
+
+  * control: Fix typo in python3 versioned dep. Don't suppose will have python
+    3.37 for a while ...
+
+ -- Iain Lane <laney@debian.org>  Fri, 16 Jul 2021 16:04:08 +0100
+
+gnome-music (40.1.1-1) experimental; urgency=medium
+
+  * New upstream release
+  * control: Bump Depends and Build-Depends for 40.
+    - grilo → 0.3.13+ and plugins → 0.3.13-2~+
+      + This is the Debian revision that started building with tracker 3
+    - add pango (BD and gir)
+    - tracker 2 → tracker 3
+    - pygobject → 3.36.1+
+    - python → 3.7+
+    - meson → 0.49.0+
+  * gbp.conf: Set upstream branch back to upstream/latest
+
+ -- Iain Lane <iain.lane@canonical.com>  Thu, 24 Jun 2021 17:32:56 +0100
+
+gnome-music (3.36.7-1) unstable; urgency=medium
+
+  * Team upload
+  * Use upstream/3.36.x branch
+  * d/watch: Watch for 3.36.x versions.
+    3.38.x is not suitable for Debian 11 because it requires Tracker 3.
+  * New upstream release (Closes: #971622)
+  * Drop patch that was applied (with adjustments) upstream
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 04 Feb 2021 09:46:54 +0000
+
+gnome-music (3.36.4.1-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+    - pauseonsuspend: Fix logging issues when logind is unavailable
+    - Fix duplication of menu bar
+  * Build-Depend on libgdk-pixbuf2.0-bin and librsvg2-common:native.
+    These are required to convert SVG icons to pixmap data. Previously,
+    at least librsvg2-common was pulled in by adwaita-icon-theme.
+  * Add patch to fix crash when gnome-online-accounts is not available
+    (Closes: #969271)
+  * Add Suggests on gnome-online-accounts.
+    last.fm support won't work without it.
+
+ -- Simon McVittie <smcv@debian.org>  Sun, 30 Aug 2020 15:26:47 +0100
+
+gnome-music (3.36.3-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Laurent Bigonville <bigon@debian.org>  Fri, 26 Jun 2020 11:37:37 +0200
+
+gnome-music (3.36.2-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Laurent Bigonville <bigon@debian.org>  Sat, 02 May 2020 18:27:23 +0200
+
+gnome-music (3.36.1-1) unstable; urgency=medium
+
+  * New upstream release
+  * Drop all patches: applied in new release
+
+ -- Jeremy Bicha <jbicha@debian.org>  Sun, 29 Mar 2020 14:05:37 -0400
+
+gnome-music (3.36.0-2) unstable; urgency=medium
+
+  * d/p/gnome-music.in-Do-not-change-the-module-search-path-on-in.patch,
+    d/p/gnome-music.in-Do-not-use-pyexecdir-variable.patch: Do not change the
+    python search path, from upstream (Closes: #954195)
+  * d/p/Revert-Use-tabular-numbers-for-song-duration.patch: Revert "Use
+    tabular numbers for song duration", this lower the dependency on pango
+    back to the version currently in unstable (Closes: #954334)
+
+ -- Laurent Bigonville <bigon@debian.org>  Mon, 23 Mar 2020 08:55:13 +0100
+
+gnome-music (3.36.0-1) unstable; urgency=medium
+
+  * New upstream release
+    - debian/control.in: Adjust the build-dependencies
+  * debian/control.in: Bump Standards-Version to 4.5.0 (no further changes)
+
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 11 Mar 2020 13:01:44 +0100
+
+gnome-music (3.34.1-1) unstable; urgency=medium
+
+  * New upstream release
+    - debian/control.in: Bump the (build) dependencies
+  * debian/control.in: Bump Standards-Version to 4.4.1 (no further changes)
+  * debian/rules: Exclude private libraries from dh_makeshlibs call
+
+ -- Laurent Bigonville <bigon@debian.org>  Tue, 05 Nov 2019 14:04:55 +0100
+
+gnome-music (3.32.2-1) unstable; urgency=medium
+
+  * New upstream release
+  * Build-Depend on dh-sequence-gir, dh-sequence-gnome & dh-sequence-python3
+  * Release to unstable
+
+ -- Jeremy Bicha <jbicha@debian.org>  Mon, 30 Sep 2019 21:26:58 -0400
+
+gnome-music (3.32.1-1) experimental; urgency=medium
+
+  * New upstream release
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 11 Apr 2019 15:28:47 +0200
+
+gnome-music (3.32.0-1) experimental; urgency=medium
+
+  * New upstream release
+
+ -- Jeremy Bicha <jbicha@debian.org>  Sat, 16 Mar 2019 18:16:05 -0400
+
+gnome-music (3.31.90-1) experimental; urgency=medium
+
+  * New upstream development release
+  * Bump minimum libgtk-3-dev to 3.23.1
+  * Build-Depend on debhelper-compat 12 and drop debian/compat
+  * Bump Standards-Version to 4.3.0
+
+ -- Jeremy Bicha <jbicha@debian.org>  Fri, 08 Feb 2019 11:41:34 -0500
+
+gnome-music (3.30.2-1) unstable; urgency=medium
+
+  * New upstream release
+  * Bump Standards-Version to 4.2.1
+
+ -- Jeremy Bicha <jbicha@debian.org>  Mon, 26 Nov 2018 13:31:00 -0500
+
+gnome-music (3.30.1-1) unstable; urgency=medium
+
+  [ Tim Lunn ]
+  * New upstream release
+  * debian/control.in: Bump depend on grilo-plugins 0.3.8
+
+  [ Jeremy Bicha ]
+  * Build-Depend on grilo-plugins
+
+ -- Tim Lunn <tim@feathertop.org>  Wed, 03 Oct 2018 10:29:41 +1000
+
+gnome-music (3.30.0-2) unstable; urgency=medium
+
+  * Upload to unstable
+
+ -- Tim Lunn <tim@feathertop.org>  Sat, 15 Sep 2018 22:12:49 +1000
+
+gnome-music (3.30.0-1) experimental; urgency=medium
+
+  * New upstream release
+
+ -- Tim Lunn <tim@feathertop.org>  Sun, 09 Sep 2018 17:21:32 +1000
+
+gnome-music (3.29.91-1) experimental; urgency=medium
+
+  * Team upload
+  * d/watch: Watch for development versions
+  * New upstream release
+  * d/copyright: Document GStreamer exception
+  * Drop dependency on gir1.2-notify-1.0, no longer used
+  * Build-depend on meson 0.46 as per meson.build
+  * Sort (build-)dependencies with wrap-and-sort -ab
+  * (Build-)Depend on libdazzle
+  * (Build-)Depend on libsoup
+  * Update versioned (build-)dependencies
+    - In particular, pygobject 3.29 is now required
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 15 Aug 2018 09:49:21 +0100
+
+gnome-music (3.28.2.1-2) unstable; urgency=medium
+
+  * Team upload
+  * Add missing dependency on gir1.2-goa-1.0 (Closes: #899117)
+  * Remove obsolete X-Python3-Version
+  * Standards-Version: 4.2.0 (no changes required)
+  * Set Rules-Requires-Root to no
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 10 Aug 2018 10:26:22 +0100
+
+gnome-music (3.28.2.1-1) unstable; urgency=medium
+
+  [ Tim Lunn ]
+  * New upstream release
+
+ -- Tim Lunn <tim@feathertop.org>  Tue, 15 May 2018 18:29:39 +1000
+
+gnome-music (3.28.1-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Tim Lunn <tim@feathertop.org>  Mon, 16 Apr 2018 18:38:04 +1000
+
+gnome-music (3.28.0.1-1) unstable; urgency=medium
+
+  * New upstream Release
+  * debian/control.in: Add build-dep on dh-python
+
+ -- Tim Lunn <tim@feathertop.org>  Wed, 28 Mar 2018 18:45:45 +1100
+
+gnome-music (3.28.0-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Jeremy Bicha <jbicha@debian.org>  Wed, 14 Mar 2018 20:00:01 -0400
+
+gnome-music (3.27.92.1-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release candidate
+  * Build with meson
+  * debian/docs: AUTHORS was removed upstream, other files have .md postfix
+  * debian/rules: drop override_dh_install, not needed with meson
+  * Release to unstable
+
+ -- Tim Lunn <tim@feathertop.org>  Tue, 06 Mar 2018 18:26:28 +1100
+
+gnome-music (3.27.90-1) experimental; urgency=medium
+
+  * Team upload
+  * New upstream development release
+  * debian/control.in: add build-deps on libgoa-1.0 and python3-cairo,
+    replace intltool with gettext
+
+ -- Tim Lunn <tim@feathertop.org>  Sun, 18 Feb 2018 13:47:33 +1100
+
+gnome-music (3.26.1-4) unstable; urgency=medium
+
+  * Update Vcs fields for migration to https://salsa.debian.org/
+  * Bump debhelper compat to 11
+
+ -- Jeremy Bicha <jbicha@debian.org>  Fri, 02 Feb 2018 15:29:36 -0500
+
+gnome-music (3.26.1-3) unstable; urgency=medium
+
+  [ Simon McVittie ]
+  * Increase Priority to optional. Priority: extra is deprecated.
+
+  [ Jeremy Bicha ]
+  * Update Vcs fields for conversion to git
+  * Add debian/gbp.conf
+  * Bump Standards-Version to 4.1.2
+
+ -- Jeremy Bicha <jbicha@debian.org>  Thu, 14 Dec 2017 22:32:04 -0500
+
+gnome-music (3.26.1-2) unstable; urgency=medium
+
+  * Depend on gir1.2-totemplparser-1.0 instead of old package name
+
+ -- Jeremy Bicha <jbicha@debian.org>  Mon, 16 Oct 2017 09:20:21 -0400
+
+gnome-music (3.26.1-1) unstable; urgency=medium
+
+  * New upstream translations release
+  * Bump Standards-Version to 4.1.1
+
+ -- Jeremy Bicha <jbicha@debian.org>  Mon, 02 Oct 2017 20:37:57 -0400
+
+gnome-music (3.26.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/control.in:
+    - Update dependencies for tracker2
+    - Bump grilo to >= 0.3.4
+
+ -- Jeremy Bicha <jbicha@debian.org>  Wed, 13 Sep 2017 16:26:16 -0400
+
+gnome-music (3.24.2-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/control.in:
+    - Build-depend on autoconf-archive
+    - Bump grilo to >= 0.3
+    - Bump libmediaart to >= 1.9.1
+    - Bump tracker to >= 1.11.1
+  * Bump Standards-Version to 4.1.0
+
+ -- Jeremy Bicha <jbicha@debian.org>  Wed, 30 Aug 2017 19:41:14 -0400
+
+gnome-music (3.22.2-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 08 Nov 2016 15:21:54 +0100
+
+gnome-music (3.22.1-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Simplify the favorite songs query. This avoids an error where
+      gnome-music fails to start with an invalid child error.
+      (Closes: #819846)
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 10 Oct 2016 17:39:40 +0200
+
+gnome-music (3.22.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Mon, 19 Sep 2016 20:03:53 +0200
+
+gnome-music (3.21.92-1) unstable; urgency=medium
+
+  * New upstream development release.
+  * Bump debhelper compat level to 10.
+  * Replace Build-Depends gnome-common with explicit Build-Depends on
+    pkg-config, intltool and gettext.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 13 Sep 2016 02:32:48 +0200
+
+gnome-music (3.21.90-1) unstable; urgency=medium
+
+  [ Jeremy Bicha ]
+  * debian/docs: Install NEWS
+
+  [ Andreas Henriksson ]
+  * New upstream beta release.
+  * Update build-dependencies according to configure.ac changes:
+    - bump python-gi-dev to >= 3.21.1
+    - bump tracker to >= 1.9.0
+    - bump grilo to >= 0.3.1
+  * debian/docs: add AUTHORS, README
+  * Version python3-gi dependency to >= 3.21.1 to make sure we have
+    a new enough version installed at runtime.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Mon, 05 Sep 2016 11:17:30 +0200
+
+gnome-music (3.20.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop Depends on python3-dbus. The mpris plugin has been ported from
+    dbus-python to Gio GDBus.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 11 May 2016 13:36:44 +0200
+
+gnome-music (3.20.0-3) unstable; urgency=medium
+
+  * Drop Build-Depends on gnome-doc-utils, not needed.
+  * Bump minimum required version of gtk+ to 3.19.3.
+    The '-gtk-key-bindings' property was renamed. (Closes: #822657)
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 26 Apr 2016 16:50:02 +0200
+
+gnome-music (3.20.0-2) unstable; urgency=medium
+
+  [ Rico Tzschichholz ]
+  * Switch grilo-plugins dependency to -0.3
+
+  [ Michael Biebl ]
+  * Drop uploaders.mk from debian/rules as this breaks the clean target with
+    dh. Instead use the gnome dh addon which updates debian/control via
+    dh_gnome_clean.
+  * Bump Standards-Version to 3.9.8.
+  * Upload to unstable.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 19 Apr 2016 18:13:28 +0200
+
+gnome-music (3.20.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Update build-dependencies according to configure.ac changes:
+    - Add libtracker-sparql-1.0-dev (>= 1.7.1)
+    - Switch libgrilo-0.2-dev to libgrilo-0.3-dev
+  * Bump tracker-related dependencies to >= 1.7.1
+  * Switch grilo gir dependency to -0.3
+
+ -- Andreas Henriksson <andreas@fatal.se>  Sat, 02 Apr 2016 17:56:01 +0200
+
+gnome-music (3.18.2-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 17 Nov 2015 15:09:35 +0100
+
+gnome-music (3.18.0-2) unstable; urgency=medium
+
+  * Add Depends on python3-requests. (Closes: #802694)
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 22 Oct 2015 21:07:26 +0200
+
+gnome-music (3.18.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Fri, 02 Oct 2015 23:35:27 +0200
+
+gnome-music (3.16.2-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 21 Aug 2015 09:25:16 +0200
+
+gnome-music (3.16.1-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 23 May 2015 17:22:55 +0200
+
+gnome-music (3.16.1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Build against libmediaart-2.0. (Closes: #784677)
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 13 May 2015 15:58:51 +0200
+
+gnome-music (3.14.1-1) unstable; urgency=medium
+
+  [ Pedro Beja ]
+  * New upstream release.
+
+  [ Laurent Bigonville ]
+  * debian/control.in: Bump Standards-Version to 3.9.6 (no further changes)
+
+ -- Laurent Bigonville <bigon@debian.org>  Sun, 19 Oct 2014 23:39:47 +0200
+
+gnome-music (3.14.0-1) unstable; urgency=medium
+
+  [ Jean Schurger ]
+  * New upstream release (3.13.92).
+  * debian/control.in:
+    - Bump libgtk-3-dev (>= 3.13.2) build dependency accorded to configure.ac.
+    - Add libmediaart-1.0-dev build dependency accorded to configure.ac.
+
+  [ Rico Tzschichholz ]
+  * debian/control.in:
+    - Add dependendcy on gir1.2-mediaart-1.0
+
+  [ Andreas Henriksson ]
+  * New upstream release (3.14.0).
+
+ -- Andreas Henriksson <andreas@fatal.se>  Mon, 22 Sep 2014 21:20:08 +0200
+
+gnome-music (3.12.2.1-1) unstable; urgency=medium
+
+  [ Emilio Pozuelo Monfort ]
+  * Build depend on python3 rather than python3-dev.
+
+  [ Andreas Henriksson ]
+  * New upstream release.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Fri, 20 Jun 2014 00:10:21 +0200
+
+gnome-music (3.12.1-2) unstable; urgency=medium
+
+  * Drop alternative dependency on gir1.2-tracker-0.16.
+  * Bump Standards-Version to 3.9.5. No further changes.
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 10 May 2014 03:47:53 +0200
+
+gnome-music (3.12.1-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Fri, 09 May 2014 20:42:51 +0200
+
+gnome-music (3.12.0-2) unstable; urgency=medium
+
+  * Add missing gir1.2-totem-plparser-1.0 dependency (Closes: #742604)
+
+ -- Andreas Henriksson <andreas@fatal.se>  Sun, 06 Apr 2014 18:42:43 +0200
+
+gnome-music (3.12.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/control.in: Add Vcs-* fields
+  * Add yelp-tools build-dependency
+  * Add gir1.2-tracker-1.0 as alternative to gir1.2-tracker-0.16 dependency.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Mon, 24 Mar 2014 18:48:48 +0100
+
+gnome-music (3.11.90-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Mon, 17 Feb 2014 21:54:20 +0100
+
+gnome-music (3.10.1-2) unstable; urgency=medium
+
+  * Add dependency on python3-dbus and gnome-settings-daemon (Closes: #731284)
+    - g-s-d needs to actually be running, not just installed.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Fri, 27 Dec 2013 22:32:59 +0100
+
+gnome-music (3.10.1-1) unstable; urgency=low
+
+  * Import ricotz gnome-music (3.10.0-0ubuntu1~13.10~ricotz0) packaging
+    from https://launchpad.net/~ricotz/+archive/testing
+  * New upstream release.
+  * debian/control.in:
+    - Set Maintainer to Debian Gnome Maintainers
+    - Set Homepage to https://wiki.gnome.org/Apps/Music
+    - Steal some words from the upstream Design page about Music
+      to make the long description more verbose.
+  * debian/copyright:
+    - Set Source to http://ftp.gnome.org/pub/gnome/sources/gnome-music/
+    - Set list of copyright holders to what the sourcecode says.
+  * Rewrite debian/rules using dh.
+  * Drop cdbs build-dependency.
+  * Add myself as an additional debian/* copyright holder
+  * Lower libgtk-3-dev build-dependency to >= 3.8
+  * Lower gir1.2-gtk-3.0 dependency to >= 3.8
+  * Change ${python:Depends} to ${python3:Depends}
+  * Drop debian/patches
+    - ubuntu-notify-fix.patch not needed here.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Fri, 18 Oct 2013 21:04:06 +0200
+
+gnome-music (3.10.0-0ubuntu1~13.10~ricotz0) saucy; urgency=medium
+
+  * New upstream release
+
+ -- Rico Tzschichholz <ricotz@ubuntu.com>  Mon, 23 Sep 2013 21:46:09 +0200
+
+gnome-music (0.2-1) experimental; urgency=low
+
+  * Initial release
+
+ -- Rico Tzschichholz <ricotz@ubuntu.com>  Sun, 09 Jun 2013 08:00:00 +0200
