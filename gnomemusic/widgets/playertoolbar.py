@@ -22,6 +22,10 @@
 # code, but you are not obligated to do so.  If you do not wish to do so,
 # delete this exception statement from your version.
 
+import json
+import re
+import subprocess
+import threading
 from gettext import gettext as _
 from gi.repository import Gio, GLib, GObject, Gtk
 
@@ -58,11 +62,17 @@ class PlayerToolbar(Gtk.ActionBar):
     _repeat_image = Gtk.Template.Child()
     _song_info_box = Gtk.Template.Child()
     _title_label = Gtk.Template.Child()
+    _lyrics_stack = Gtk.Template.Child()
+    _lyrics_toggle_button = Gtk.Template.Child()
 
     def __init__(self):
         super().__init__()
 
         self._player = None
+        self._current_lyrics = []
+        self._current_lyric_index = -1
+        self._lyrics_timer_id = 0
+        self._lyrics_enabled = False
 
         self._art_stack.props.size = ArtSize.SMALL
         self._art_stack.props.art_type = DefaultIcon.Type.ALBUM
@@ -117,6 +127,7 @@ class PlayerToolbar(Gtk.ActionBar):
         self._player.connect(
             'notify::repeat-mode', self._on_repeat_mode_changed)
         self._player.connect('notify::state', self._sync_playing)
+        self._player.connect('seek-finished', self._on_seek_finished)
 
         repeat_mode = self._player.props.repeat_mode
         self._repeat_action.set_state(
@@ -181,6 +192,11 @@ class PlayerToolbar(Gtk.ActionBar):
 
         self._play_button.set_tooltip_text(tooltip)
 
+        if self._player.props.state == Playback.PLAYING:
+            self._start_lyrics_timer()
+        else:
+            self._stop_lyrics_timer()
+
     def _sync_prev_next(self):
         self._next_button.props.sensitive = self._player.props.has_next
         self._prev_button.props.sensitive = self._player.props.has_previous
@@ -208,9 +224,157 @@ class PlayerToolbar(Gtk.ActionBar):
         self._tooltip.props.subtitle = artist
 
         self._art_stack.props.coreobject = coresong
+        self._load_lyrics_async(coresong)
 
     @Gtk.Template.Callback()
     def _on_tooltip_query(self, widget, x, y, kb, tooltip, data=None):
         tooltip.set_custom(self._tooltip)
 
         return True
+
+    def _extract_lyrics(self, path):
+        try:
+            res = subprocess.run([
+                'ffprobe', '-show_entries', 'format_tags', '-of', 'json', '-v', 'quiet', path
+            ], capture_output=True, text=True, check=True)
+            data = json.loads(res.stdout)
+            tags = data.get('format', {}).get('tags', {})
+            for key, val in tags.items():
+                if key.lower() in ('lyrics', 'sylt', 'unsyncedlyrics', 'unsynced lyrics'):
+                    return val
+            return None
+        except Exception as e:
+            return None
+
+    def _parse_lrc(self, lyrics_str):
+        lines = lyrics_str.splitlines()
+        parsed = []
+        for line in lines:
+            line = line.strip()
+            matches = re.findall(r'\[(\d+):(\d+(?:\.\d+)?)\]', line)
+            if not matches:
+                continue
+            text = re.sub(r'\[\d+:\d+(?:\.\d+)?\]', '', line).strip()
+            for m in matches:
+                minutes = int(m[0])
+                seconds = float(m[1])
+                time_in_seconds = minutes * 60 + seconds
+                parsed.append((time_in_seconds, text))
+        parsed.sort(key=lambda x: x[0])
+        return parsed
+
+    def _load_lyrics_async(self, coresong):
+        self._current_lyrics = []
+        self._current_lyric_index = -1
+        self._set_lyric_text("")
+
+        if not coresong:
+            return
+
+        url = coresong.props.url
+        if not url or not url.startswith("file://"):
+            return
+
+        def worker():
+            try:
+                path, _ = GLib.filename_from_uri(url)
+                lyrics_str = self._extract_lyrics(path)
+                if lyrics_str:
+                    parsed_lyrics = self._parse_lrc(lyrics_str)
+                    GLib.idle_add(self._on_lyrics_loaded, coresong, parsed_lyrics)
+            except Exception as e:
+                pass
+
+        threading.Thread(target=worker, daemon=True).start()
+
+    def _on_lyrics_loaded(self, coresong, parsed_lyrics):
+        current = self._player.props.current_song if self._player else None
+        if current == coresong:
+            self._current_lyrics = parsed_lyrics
+            if self._lyrics_enabled:
+                self._update_lyrics_timer()
+
+    def _start_lyrics_timer(self):
+        if self._lyrics_enabled and self._lyrics_timer_id == 0:
+            self._lyrics_timer_id = GLib.timeout_add(100, self._update_lyrics_timer)
+
+    def _stop_lyrics_timer(self):
+        if self._lyrics_timer_id != 0:
+            GLib.source_remove(self._lyrics_timer_id)
+            self._lyrics_timer_id = 0
+
+    def _update_lyrics_timer(self):
+        if not self._player:
+            self._lyrics_timer_id = 0
+            return False
+
+        if self._player.props.state != Playback.PLAYING:
+            self._lyrics_timer_id = 0
+            return False
+
+        pos = self._player.get_position()
+        idx = self._get_lyric_index(pos)
+        if idx != self._current_lyric_index:
+            self._current_lyric_index = idx
+            text = self._current_lyrics[idx][1] if idx != -1 else ""
+            self._set_lyric_text(text)
+
+        return True
+
+    def _get_lyric_index(self, pos):
+        if not self._current_lyrics:
+            return -1
+        for i in range(len(self._current_lyrics) - 1, -1, -1):
+            if self._current_lyrics[i][0] <= pos:
+                return i
+        return -1
+
+    def _set_lyric_text(self, text):
+        current_child = self._lyrics_stack.get_visible_child()
+        current_text = current_child.get_text() if isinstance(current_child, Gtk.Label) else ""
+
+        if text == "" or current_text == "":
+            self._lyrics_stack.props.transition_type = Gtk.StackTransitionType.CROSSFADE
+        else:
+            self._lyrics_stack.props.transition_type = Gtk.StackTransitionType.SLIDE_UP
+
+        new_label = Gtk.Label(label=text)
+        new_label.get_style_context().add_class("lyrics-label")
+        new_label.props.wrap = True
+        new_label.props.halign = Gtk.Align.CENTER
+        new_label.props.valign = Gtk.Align.CENTER
+        new_label.show()
+
+        self._lyrics_stack.add(new_label)
+        self._lyrics_stack.set_visible_child(new_label)
+
+        GLib.timeout_add(500, self._cleanup_old_lyrics, new_label)
+
+    def _cleanup_old_lyrics(self, current_label):
+        for child in self._lyrics_stack.get_children():
+            if child != current_label:
+                self._lyrics_stack.remove(child)
+                child.destroy()
+        return False
+
+    @Gtk.Template.Callback()
+    def _on_lyrics_toggle_toggled(self, button):
+        self._lyrics_enabled = button.get_active()
+        self._lyrics_stack.set_visible(self._lyrics_enabled)
+        if self._lyrics_enabled:
+            self._start_lyrics_timer()
+            pos = self._player.get_position() if self._player else 0.0
+            idx = self._get_lyric_index(pos)
+            text = self._current_lyrics[idx][1] if idx != -1 else ""
+            self._set_lyric_text(text)
+        else:
+            self._stop_lyrics_timer()
+
+    def _on_seek_finished(self, player):
+        if self._lyrics_enabled:
+            pos = self._player.get_position()
+            idx = self._get_lyric_index(pos)
+            if idx != self._current_lyric_index:
+                self._current_lyric_index = idx
+                text = self._current_lyrics[idx][1] if idx != -1 else ""
+                self._set_lyric_text(text)

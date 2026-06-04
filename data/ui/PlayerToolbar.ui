@@ -94,6 +94,29 @@
         <property name="margin-start">6</property>
         <property name="margin-top">6</property>
         <child>
+          <object class="GtkStack" id="_lyrics_stack">
+            <property name="visible">False</property>
+            <property name="can_focus">False</property>
+            <property name="transition_type">slide-up</property>
+            <property name="transition_duration">400</property>
+            <property name="vhomogeneous">True</property>
+            <property name="hhomogeneous">True</property>
+            <property name="height_request">40</property>
+            <child>
+              <object class="GtkLabel" id="_lyrics_label_initial">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label"></property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <style>
+                  <class name="lyrics-label"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
           <object class="GtkBox" id="buttons">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -219,6 +242,24 @@
         <property name="margin-end">6</property>
         <property name="margin-start">6</property>
         <property name="margin-top">6</property>
+        <child>
+          <object class="GtkToggleButton" id="_lyrics_toggle_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin_end">6</property>
+            <property name="tooltip_text" translatable="yes">Toggle Lyrics</property>
+            <signal name="toggled" handler="_on_lyrics_toggle_toggled" swapped="no"/>
+            <child>
+              <object class="GtkImage" id="lyrics_image">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">media-view-subtitles-symbolic</property>
+                <property name="icon_size">1</property>
+              </object>
+            </child>
+          </object>
+        </child>
         <child>
           <object class="GtkMenuButton" id="_repeat_menu_button">
             <property name="visible">True</property>
